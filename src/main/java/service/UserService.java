@@ -21,20 +21,12 @@ public class UserService {
 		return ud.selectUserById(id);
 	}
 	
-	public static User selectUserByUsername(String username) {
-		return ud.selectUserByUsername(username);
-	}
-	
 	public static void updateUser(User u) {
 		ud.updateUser(u);
 	}
 	
 	public static void deleteUserById(int id) {
 		ud.deleteUserById(id);
-	}
-	
-	public void deleteUserByUsername(String username) {
-		ud.deleteUserByUsername(username);
 	}
 	
 }
