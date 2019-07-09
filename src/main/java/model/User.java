@@ -1,9 +1,27 @@
 package model;
 
-public class User {
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 
-	private int p_id;
+@Entity
+@Table(name="User")
+public class User {
+	
+	@Id
+	@Column(name="u_id")
+	@SequenceGenerator(sequenceName="user_seq", name="u_seq")
+	@GeneratedValue(generator="u_seq", strategy=GenerationType.SEQUENCE)
+	private int id;
+	
+	@Column(name="u_name", nullable=false, unique=true)
 	private String username;
+	
+	@Column(name="password", nullable=false)
 	private String password;
 	
 	public User() {
@@ -16,19 +34,19 @@ public class User {
 		this.password = password;
 	}
 	
-	public User(int p_id, String username, String password) {
+	public User(int id, String username, String password) {
 		super();
-		this.p_id = p_id;
+		this.id = id;
 		this.username = username;
 		this.password = password;
 	}
 
-	public int getP_id() {
-		return p_id;
+	public int getId() {
+		return id;
 	}
 
-	public void setP_id(int p_id) {
-		this.p_id = p_id;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getUsername() {
@@ -49,7 +67,7 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [p_id=" + p_id + ", username=" + username + ", password=" + password + "]";
+		return "User [id=" + id + ", username=" + username + ", password=" + password + "]";
 	}
 	
 }
