@@ -8,7 +8,7 @@ public interface ReviewDAO {
 	
 	List<Review> getAllReviews();
 	boolean addReview(Review r);
-	boolean rateReview(Review r, boolean up);
+	boolean updateReview(Review r);
 
 
 }

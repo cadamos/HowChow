@@ -46,17 +46,14 @@ public class ReviewDAOImpl implements ReviewDAO{
 	}
 
 	@Override
-	public boolean rateReview(Review r, boolean up) {
+	public boolean updateReview(Review r) {
 		Session session = HibernateUtil.getSession();
 		try {
 			session.beginTransaction();
-			if(up) {
-				r.upUserRating();
-				session.saveOrUpdate(r);
-			}
-			else {
-				r.downUserRating();
-			}
+		
+				session.update(r);
+
+
 			session.getTransaction().commit();
 		}catch(HibernateException e) {
 			e.printStackTrace();
