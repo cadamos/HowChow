@@ -15,7 +15,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-public class Review {
+public class Review implements Comparable<Review>{
 
 	@Id
 	@Column
@@ -89,6 +89,17 @@ public class Review {
 	public String toString() {
 		return "Review [r_id=" + r_id + ", p_id=" + p_id + ", d_id=" + d_id + ", rating=" + rating + ", userRating="
 				+ userRating + ", date=" + date + "]";
+	}
+
+
+	@Override
+	public int compareTo(Review r) {
+		if(this.getUserRating()>r.getUserRating())
+			return 1;
+		else if(this.getUserRating()==r.getUserRating())
+			return 0;
+		else
+			return -1;
 	}
 	
 }
