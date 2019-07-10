@@ -54,15 +54,23 @@ public class UserWebService {
 	public static void loginUser(HttpServletRequest request, HttpServletResponse response) {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-		
-		
-	}
-	
-	public static void updateUser(HttpServletRequest request, HttpServletResponse response) {
-		
-	}
-	
-	public static void deleteUser(HttpServletRequest request, HttpServletResponse response) {
+		boolean login = false;
+		List<User> users = UserService.selectAllUsers();
+
+		try {
+			for (User u : users) {
+				if (u.getUsername().equalsIgnoreCase(username) && u.getPassword().equals(password)) {
+					login = true;
+				}
+			}
+			if (login) {
+				response.getWriter().append("true");
+			} else {
+				response.getWriter().append("false");
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
 	}
 
