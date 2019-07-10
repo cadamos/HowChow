@@ -56,9 +56,7 @@ public class Tag {
 		return t_name;
 	}
 
-	@ManyToMany
-	(cascade = CascadeType.ALL)
-	@JoinTable(name = "Dish_Tag", joinColumns = { @JoinColumn(name = "d_id") }, inverseJoinColumns = { @JoinColumn(name = "t_id") })
+	
 	public void setT_name(String t_name) {
 		this.t_name = t_name;
 	}
