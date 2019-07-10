@@ -21,6 +21,10 @@ public class UserService {
 		return ud.selectUserById(id);
 	}
 	
+	public static User selectUserByUsername(String username) {
+		return ud.selectUserByUsername(username);
+	}
+	
 	public static void updateUser(User u) {
 		ud.updateUser(u);
 	}
