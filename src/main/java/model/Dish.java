@@ -122,7 +122,7 @@ public class Dish {
 		this.reviewsAssoc = reviewsAssoc;
 	}
 
-	public int getRatingAvg() {
+	public float getRatingAvg() {
 		return ratingAvg;
 	}
 
@@ -140,7 +140,7 @@ public class Dish {
 			float count = 0;
 			float amt = 0;
 			for (Review r: this.reviewsAssoc) {
-				amt += r.rating;
+				amt += r.getRating();
 				count += 1;
 			}
 			this.ratingAvg = amt/count;

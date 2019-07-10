@@ -3,6 +3,7 @@ package dao;
 import java.util.List;
 
 import model.Dish;
+import model.Tag;
 
 public interface DishDAO {
 

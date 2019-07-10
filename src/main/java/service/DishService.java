@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import dao.DishDAOImpl;
 import model.Dish;
+import model.Tag;
 
 public class DishService {
 

@@ -3,13 +3,11 @@ package dao;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.persistence.criteria.CriteriaBuilder;
-
 import org.hibernate.HibernateException;
 import org.hibernate.Session;
-import org.hibernate.criterion.CriteriaQuery;
 
 import model.Dish;
+import model.Tag;
 import util.HibernateUtil;
 
 public class DishDAOImpl implements DishDAO {
@@ -130,6 +128,7 @@ public class DishDAOImpl implements DishDAO {
 		}
 		
 	}
+
 
 	
 }
