@@ -1,6 +1,7 @@
 package webservice;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -26,14 +27,34 @@ public class UserWebService {
 		
 	}
 	
-	public static void addUser(HttpServletRequest request, HttpServletResponse response) {
+	public static void registerUser(HttpServletRequest request, HttpServletResponse response) {
 		String username = request.getParameter("username");
 		String password = request.getParameter("password");
-		User u = new User(username, password);
+		boolean canRegister = true;
+		List<User> users = UserService.selectAllUsers();
+
+		try {
+			for (User u : users) {
+				if (u.getUsername().equalsIgnoreCase(username) && u.getPassword().equals(password)) {
+					canRegister = false;
+				}
+			}
+			if (canRegister) {
+				UserService.insertUser(new User(username, password));
+				response.getWriter().append("User has been added to the database");
+			} else {
+				response.getWriter().append("User already exists in the database");
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		
-//		if (u.register(username, password)) {
-//			UserService.insertUser(u);
-//		}
+	}
+	
+	public static void loginUser(HttpServletRequest request, HttpServletResponse response) {
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+		
 		
 	}
 	
