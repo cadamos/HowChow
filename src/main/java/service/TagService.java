@@ -22,7 +22,7 @@ public class TagService {
 	
 	
 	public static void updateTagr(Tag t) {
-		tg.updateTagr(t);
+		tg.updateTag(t);
 	}
 	
 	public static void deleteTagById(int id) {
