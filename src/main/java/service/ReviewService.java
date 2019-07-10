@@ -11,15 +11,18 @@ import model.Review;
 public class ReviewService {
 	static ReviewDAOImpl rd = new ReviewDAOImpl();
 	
-	public static List<Review> getReviewsByDishId(Dish d) {
+	public static List<Review> getReviewsByDishId(int d_id) {
 		List<Review> reviews = new ArrayList<Review>();
 		for(Review r : rd.getAllReviews()) {
-			if(r.getDish().equals(d)) {
+			if(r.getDish().getD_id()== d_id) {
 				reviews.add(r);
 			}
 		}
 		Collections.sort(reviews);
 		return reviews;
+	}
+	public static List<Review> getAllReviews(){
+		return rd.getAllReviews();
 	}
 	
 	public static boolean addReview(Review r) {

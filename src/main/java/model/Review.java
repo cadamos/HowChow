@@ -31,33 +31,44 @@ public class Review implements Comparable<Review>{
 	private Dish dish;
 	@Column(name="rating")
 	private int rating;
+	@Column(name="comment")
+	private String comment;
 	@Column(name="userRating")
-	private int userRating;
+	private int userRating=0;
 	@Column(name="date")
 	@Temporal(TemporalType.DATE)
     private Date date = new Date();
 	
 	
-	
-	
-	
-	public Review(User user, Dish dish, int rating) {
+
+	public Review(User user, Dish dish, int rating, String comment) {
 		super();
 		this.user = user;
 		this.dish = dish;
 		this.rating = rating;
+		this.comment = comment;
 	}
 	
-	public Review(int r_id, User user, Dish dish, int rating, int userRating, Date date) {
+	
+	public Review(int r_id, User user, Dish dish, int rating, String comment, int userRating, Date date) {
 		super();
 		this.r_id = r_id;
 		this.user = user;
 		this.dish = dish;
 		this.rating = rating;
+		this.comment = comment;
 		this.userRating = userRating;
 		this.date = date;
 	}
 
+
+	public String getComment() {
+		return comment;
+	}
+
+	public void setComment(String comment) {
+		this.comment = comment;
+	}
 	public User getUser() {
 		return user;
 	}
