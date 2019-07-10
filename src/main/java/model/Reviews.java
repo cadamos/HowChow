@@ -15,7 +15,7 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-public class Review implements Comparable<Review>{
+public class Reviews implements Comparable<Reviews>{
 
 	@Id
 	@Column(name="r_id")
@@ -38,7 +38,28 @@ public class Review implements Comparable<Review>{
 	
 	
 	
-	public Review(int p_id, int d_id, int rating, int userRating) {
+	public Reviews(int r_id, int p_id, int d_id, int rating, int userRating, Date date) {
+		super();
+		this.r_id = r_id;
+		this.p_id = p_id;
+		this.d_id = d_id;
+		this.rating = rating;
+		this.userRating = userRating;
+		this.date = date;
+	}
+
+
+	public Reviews(int r_id, int p_id, int d_id, int rating, int userRating) {
+		super();
+		this.r_id = r_id;
+		this.p_id = p_id;
+		this.d_id = d_id;
+		this.rating = rating;
+		this.userRating = userRating;
+	}
+
+
+	public Reviews(int p_id, int d_id, int rating, int userRating) {
 		super();
 		this.p_id = p_id;
 		this.d_id = d_id;
@@ -92,7 +113,7 @@ public class Review implements Comparable<Review>{
 
 
 	@Override
-	public int compareTo(Review r) {
+	public int compareTo(Reviews r) {
 		if(this.getUserRating()>r.getUserRating())
 			return 1;
 		else if(this.getUserRating()==r.getUserRating())

@@ -5,14 +5,14 @@ import java.util.Collections;
 import java.util.List;
 
 import dao.ReviewDAOImpl;
-import model.Review;
+import model.Reviews;
 
 public class ReviewService {
 	static ReviewDAOImpl rd = new ReviewDAOImpl();
 	
-	public static List<Review> getReviewsByDishId(int d_id) {
-		List<Review> reviews = new ArrayList<Review>();
-		for(Review r : rd.getAllReviews()) {
+	public static List<Reviews> getReviewsByDishId(int d_id) {
+		List<Reviews> reviews = new ArrayList<Reviews>();
+		for(Reviews r : rd.getAllReviews()) {
 			if(r.getD_id()==d_id) {
 				reviews.add(r);
 			}
@@ -21,15 +21,15 @@ public class ReviewService {
 		return reviews;
 	}
 	
-	public static boolean addReview(Review r) {
+	public static boolean addReview(Reviews r) {
 		return rd.addReview(r);
 	}
 	
-	public static boolean upReview(Review r) {
+	public static boolean upReview(Reviews r) {
 		r.upUserRating();
 		return rd.updateReview(r);
 	}
-	public static boolean downReview(Review r) {
+	public static boolean downReview(Reviews r) {
 		r.downUserRating();
 		return rd.updateReview(r);
 	}
