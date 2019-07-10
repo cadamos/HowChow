@@ -99,4 +99,12 @@ public class User {
 		}
 		return false;
 	}
+	
+	public User register(String username, String password) {
+		User u = null;
+		if (!login(username, password)) {
+			u = new User(username, password);
+		}
+		return u;
+	}
 }
