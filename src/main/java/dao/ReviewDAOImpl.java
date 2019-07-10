@@ -6,15 +6,15 @@ import org.hibernate.HibernateException;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
-import model.Reviews;
+import model.Review;
 import util.HibernateUtil;
 
 public class ReviewDAOImpl implements ReviewDAO{
 
 	@Override
-	public List<Reviews> getAllReviews() {
+	public List<Review> getAllReviews() {
 		Session session = HibernateUtil.getSession();
-		List<Reviews> reviews = null;
+		List<Review> reviews = null;
 		
 		try {
 			reviews = session.createQuery("FROM Review").list();
@@ -27,7 +27,7 @@ public class ReviewDAOImpl implements ReviewDAO{
 	}
 
 	@Override
-	public boolean addReview(Reviews r) {
+	public boolean addReview(Review r) {
 		Session session = HibernateUtil.getSession();
 		Transaction tx = null;
 		
@@ -46,7 +46,7 @@ public class ReviewDAOImpl implements ReviewDAO{
 	}
 
 	@Override
-	public boolean updateReview(Reviews r) {
+	public boolean updateReview(Review r) {
 		Session session = HibernateUtil.getSession();
 		try {
 			session.beginTransaction();

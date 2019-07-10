@@ -2,13 +2,13 @@ package dao;
 
 import java.util.List;
 
-import model.Reviews;
+import model.Review;
 
 public interface ReviewDAO {
 	
-	List<Reviews> getAllReviews();
-	boolean addReview(Reviews r);
-	boolean updateReview(Reviews r);
+	List<Review> getAllReviews();
+	boolean addReview(Review r);
+	boolean updateReview(Review r);
 
 
 }

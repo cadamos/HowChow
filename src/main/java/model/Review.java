@@ -9,25 +9,26 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-public class Reviews implements Comparable<Reviews>{
+@Table(name="Reviews")
+public class Review implements Comparable<Review>{
 
 	@Id
 	@Column(name="r_id")
 	@SequenceGenerator(sequenceName="review_seq", name="rev_seq")
 	@GeneratedValue(generator="rev_seq", strategy=GenerationType.SEQUENCE)
 	private int r_id;
-	@OneToMany
-	@JoinColumn(name="p_id")
-	private int p_id;
 	@ManyToOne
+	@JoinColumn(name="u_id")
+	private User user;
+	@ManyToOne 
 	@JoinColumn(name="d_id")
-	private int d_id;
+	private Dish dish;
 	@Column(name="rating")
 	private int rating;
 	@Column(name="userRating")
@@ -38,54 +39,48 @@ public class Reviews implements Comparable<Reviews>{
 	
 	
 	
-	public Reviews(int r_id, int p_id, int d_id, int rating, int userRating, Date date) {
+	
+	
+	public Review(User user, Dish dish, int rating) {
+		super();
+		this.user = user;
+		this.dish = dish;
+		this.rating = rating;
+	}
+	
+	public Review(int r_id, User user, Dish dish, int rating, int userRating, Date date) {
 		super();
 		this.r_id = r_id;
-		this.p_id = p_id;
-		this.d_id = d_id;
+		this.user = user;
+		this.dish = dish;
 		this.rating = rating;
 		this.userRating = userRating;
 		this.date = date;
 	}
 
-
-	public Reviews(int r_id, int p_id, int d_id, int rating, int userRating) {
-		super();
-		this.r_id = r_id;
-		this.p_id = p_id;
-		this.d_id = d_id;
-		this.rating = rating;
-		this.userRating = userRating;
+	public User getUser() {
+		return user;
 	}
 
-
-	public Reviews(int p_id, int d_id, int rating, int userRating) {
-		super();
-		this.p_id = p_id;
-		this.d_id = d_id;
-		this.rating = rating;
-		this.userRating = userRating;
+	public void setUser(User user) {
+		this.user = user;
 	}
-	
-	
+
+	public Dish getDish() {
+		return dish;
+	}
+
+	public void setDish(Dish dish) {
+		this.dish = dish;
+	}
+
 	public int getR_id() {
 		return r_id;
 	}
 	public void setR_id(int r_id) {
 		this.r_id = r_id;
 	}
-	public int getP_id() {
-		return p_id;
-	}
-	public void setP_id(int p_id) {
-		this.p_id = p_id;
-	}
-	public int getD_id() {
-		return d_id;
-	}
-	public void setF_id(int d_id) {
-		this.d_id = d_id;
-	}
+
 	public int getRating() {
 		return rating;
 	}
@@ -105,15 +100,11 @@ public class Reviews implements Comparable<Reviews>{
 		return date;
 	}
 	
-	@Override
-	public String toString() {
-		return "Review [r_id=" + r_id + ", p_id=" + p_id + ", d_id=" + d_id + ", rating=" + rating + ", userRating="
-				+ userRating + ", date=" + date + "]";
-	}
+
 
 
 	@Override
-	public int compareTo(Reviews r) {
+	public int compareTo(Review r) {
 		if(this.getUserRating()>r.getUserRating())
 			return 1;
 		else if(this.getUserRating()==r.getUserRating())
