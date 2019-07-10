@@ -36,7 +36,7 @@ public class TagDAOImpl implements TagDAO {
 		List<Tag> tags = null;
 		
 		try {
-			tags = session.createQuery("FROM Tag").list();
+			tags = session.createQuery("FROM Tags").list();
 		} catch (HibernateException  e) {
 			e.printStackTrace();
 			
@@ -66,7 +66,7 @@ public class TagDAOImpl implements TagDAO {
 	}
 
 	@Override
-	public void updateTagr(Tag t) {
+	public void updateTag(Tag t) {
 		Session session = HibernateUtil.getSession();
 		
 		try {
