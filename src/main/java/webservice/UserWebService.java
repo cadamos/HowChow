@@ -27,6 +27,13 @@ public class UserWebService {
 	}
 	
 	public static void addUser(HttpServletRequest request, HttpServletResponse response) {
+		String username = request.getParameter("username");
+		String password = request.getParameter("password");
+		User u = new User(username, password);
+		
+//		if (u.register(username, password)) {
+//			UserService.insertUser(u);
+//		}
 		
 	}
 	
