@@ -161,3 +161,5 @@ buildNumber.properties
 .mvn/timing.properties
 .mvn/wrapper/maven-wrapper.jar
 MANIFEST.MF
+target/classes/project0.html
+.classpath
