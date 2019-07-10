@@ -20,8 +20,12 @@ public class TagService {
 		return tg.selectTagById(id);
 	}
 	
+	public static Tag selectTagByName(String name) {
+		return tg.selectTagByName(name);
+	}
 	
-	public static void updateTagr(Tag t) {
+	
+	public static void updateTag(Tag t) {
 		tg.updateTag(t);
 	}
 	

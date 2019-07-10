@@ -64,6 +64,24 @@ public class TagDAOImpl implements TagDAO {
 
 		return tag;
 	}
+	
+	@Override
+	public Tag selectTagByName(String name) {
+		Session session = HibernateUtil.getSession();
+		Tag tag = null;
+		
+		try {
+			tag = (Tag) session.get(Tag.class, name);
+		} catch (HibernateException  e) {
+			e.printStackTrace();
+		}finally {
+			session.close();
+		}
+
+
+		return tag;
+
+	}
 
 	@Override
 	public void updateTag(Tag t) {
@@ -124,5 +142,7 @@ public class TagDAOImpl implements TagDAO {
 		}
 		
 	}
+
+
 
 }
