@@ -18,24 +18,23 @@ import javax.persistence.TemporalType;
 public class Review implements Comparable<Review>{
 
 	@Id
-	@Column
+	@Column(name="r_id")
 	@SequenceGenerator(sequenceName="review_seq", name="rev_seq")
 	@GeneratedValue(generator="rev_seq", strategy=GenerationType.SEQUENCE)
 	private int r_id;
-	@Column
 	@OneToMany
+	@JoinColumn(name="p_id")
 	private int p_id;
-	@Column
 	@ManyToOne
 	@JoinColumn(name="d_id")
 	private int d_id;
-	@Column
+	@Column(name="rating")
 	private int rating;
-	@Column
+	@Column(name="userRating")
 	private int userRating;
-	@Column
+	@Column(name="date")
 	@Temporal(TemporalType.DATE)
-    private Date date;
+    private Date date = new Date();
 	
 	
 	
