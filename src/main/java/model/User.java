@@ -1,9 +1,31 @@
 package model;
 
-public class User {
+import java.util.List;
 
-	private int p_id;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+import service.UserService;
+
+@Entity
+@Table(name="Users")
+public class User {
+	
+	@Id
+	@Column(name="u_id")
+	@SequenceGenerator(sequenceName="user_seq", name="u_seq")
+	@GeneratedValue(generator="u_seq", strategy=GenerationType.SEQUENCE)
+	private int id;
+	
+	@Column(name="u_name", nullable=false, unique=true)
 	private String username;
+	
+	@Column(name="password", nullable=false)
 	private String password;
 	
 	public User() {
@@ -16,19 +38,19 @@ public class User {
 		this.password = password;
 	}
 	
-	public User(int p_id, String username, String password) {
+	public User(int id, String username, String password) {
 		super();
-		this.p_id = p_id;
+		this.id = id;
 		this.username = username;
 		this.password = password;
 	}
 
-	public int getP_id() {
-		return p_id;
+	public int getId() {
+		return id;
 	}
 
-	public void setP_id(int p_id) {
-		this.p_id = p_id;
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getUsername() {
@@ -49,7 +71,40 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [p_id=" + p_id + ", username=" + username + ", password=" + password + "]";
+		return "User [id=" + id + ", username=" + username + ", password=" + password + "]";
 	}
 	
+	@Override
+	public boolean equals(Object o) {
+
+        if (o == this) {
+        	return true;
+        }
+        if (!(o instanceof User)) {
+            return false;
+        }
+
+        User user = (User) o;
+
+        return user.username.equals(username) &&
+                user.password == password;
+    }
+	
+	public boolean login(String username, String password) {
+		List<User> users = UserService.selectAllUsers();
+		for (User u : users) {
+			if (u.getUsername().equalsIgnoreCase(username) && u.getPassword().equals(password)) {
+				return true;
+			}
+		}
+		return false;
+	}
+	
+	public User register(String username, String password) {
+		User u = null;
+		if (!login(username, password)) {
+			u = new User(username, password);
+		}
+		return u;
+	}
 }
