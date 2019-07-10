@@ -10,29 +10,35 @@ import model.Review;
 
 public class ReviewService {
 	static ReviewDAOImpl rd = new ReviewDAOImpl();
-	
+
 	public static List<Review> getReviewsByDishId(int d_id) {
 		List<Review> reviews = new ArrayList<Review>();
-		for(Review r : rd.getAllReviews()) {
-			if(r.getDish().getD_id()== d_id) {
+		for (Review r : rd.getAllReviews()) {
+			if (r.getDish().getD_id() == d_id) {
 				reviews.add(r);
 			}
 		}
 		Collections.sort(reviews);
 		return reviews;
 	}
-	public static List<Review> getAllReviews(){
+
+	public static List<Review> getAllReviews() {
 		return rd.getAllReviews();
 	}
-	
+
+	public static Review getReviewById(int r_id) {
+		return rd.getReviewById(r_id);
+	}
+
 	public static boolean addReview(Review r) {
 		return rd.addReview(r);
 	}
-	
+
 	public static boolean upReview(Review r) {
 		r.upUserRating();
 		return rd.updateReview(r);
 	}
+
 	public static boolean downReview(Review r) {
 		r.downUserRating();
 		return rd.updateReview(r);

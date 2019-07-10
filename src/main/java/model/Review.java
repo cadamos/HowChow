@@ -15,31 +15,29 @@ import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
 @Entity
-@Table(name="Reviews")
-public class Review implements Comparable<Review>{
+@Table(name = "Reviews")
+public class Review implements Comparable<Review> {
 
 	@Id
-	@Column(name="r_id")
-	@SequenceGenerator(sequenceName="review_seq", name="rev_seq")
-	@GeneratedValue(generator="rev_seq", strategy=GenerationType.SEQUENCE)
+	@Column(name = "r_id")
+	@SequenceGenerator(sequenceName = "review_seq", name = "rev_seq")
+	@GeneratedValue(generator = "rev_seq", strategy = GenerationType.SEQUENCE)
 	private int r_id;
 	@ManyToOne
-	@JoinColumn(name="u_id")
+	@JoinColumn(name = "u_id")
 	private User user;
-	@ManyToOne 
-	@JoinColumn(name="d_id")
+	@ManyToOne
+	@JoinColumn(name = "d_id")
 	private Dish dish;
-	@Column(name="rating")
+	@Column(name = "rating")
 	private int rating;
-	@Column(name="comment")
+	@Column(name = "comment")
 	private String comment;
-	@Column(name="userRating")
-	private int userRating=0;
-	@Column(name="date")
+	@Column(name = "userRating")
+	private int userRating = 0;
+	@Column(name = "date")
 	@Temporal(TemporalType.DATE)
-    private Date date = new Date();
-	
-	
+	private Date date = new Date();
 
 	public Review(User user, Dish dish, int rating, String comment) {
 		super();
@@ -48,8 +46,7 @@ public class Review implements Comparable<Review>{
 		this.rating = rating;
 		this.comment = comment;
 	}
-	
-	
+
 	public Review(int r_id, User user, Dish dish, int rating, String comment, int userRating, Date date) {
 		super();
 		this.r_id = r_id;
@@ -61,7 +58,6 @@ public class Review implements Comparable<Review>{
 		this.date = date;
 	}
 
-
 	public String getComment() {
 		return comment;
 	}
@@ -69,6 +65,7 @@ public class Review implements Comparable<Review>{
 	public void setComment(String comment) {
 		this.comment = comment;
 	}
+
 	public User getUser() {
 		return user;
 	}
@@ -88,6 +85,7 @@ public class Review implements Comparable<Review>{
 	public int getR_id() {
 		return r_id;
 	}
+
 	public void setR_id(int r_id) {
 		this.r_id = r_id;
 	}
@@ -95,33 +93,35 @@ public class Review implements Comparable<Review>{
 	public int getRating() {
 		return rating;
 	}
+
 	public void setRating(int rating) {
 		this.rating = rating;
 	}
+
 	public int getUserRating() {
 		return userRating;
 	}
+
 	public void upUserRating() {
 		this.userRating++;
 	}
+
 	public void downUserRating() {
 		this.userRating--;
 	}
+
 	public Date getDate() {
 		return date;
 	}
-	
-
-
 
 	@Override
 	public int compareTo(Review r) {
-		if(this.getUserRating()>r.getUserRating())
+		if (this.getUserRating() > r.getUserRating())
 			return 1;
-		else if(this.getUserRating()==r.getUserRating())
+		else if (this.getUserRating() == r.getUserRating())
 			return 0;
 		else
 			return -1;
 	}
-	
+
 }

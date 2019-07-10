@@ -5,10 +5,13 @@ import java.util.List;
 import model.Review;
 
 public interface ReviewDAO {
-	
-	List<Review> getAllReviews();
-	boolean addReview(Review r);
-	boolean updateReview(Review r);
 
+	List<Review> getAllReviews();
+
+	Review getReviewById(int r_id);
+
+	boolean addReview(Review r);
+
+	boolean updateReview(Review r);
 
 }
