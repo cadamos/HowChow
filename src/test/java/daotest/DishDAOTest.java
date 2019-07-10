@@ -2,11 +2,11 @@ package daotest;
 
 import static org.junit.Assert.assertTrue;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.Set;
 
 import org.junit.Test;
-
 import model.Dish;
 import service.DishService;
 
@@ -41,6 +41,8 @@ public class DishDAOTest {
 		int id = 50000;
 		Dish test = new Dish(img,name,description,tags,restaurant);
 		Dish test2 = new Dish(img,name2,description,tags,restaurant);
+		ArrayList<Dish> testdishes = new ArrayList<Dish>();
+		
 		ArrayList<Dish> dishes = DishService.selectDishesByTag(testtag);
 	}
 	

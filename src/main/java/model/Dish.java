@@ -43,8 +43,6 @@ public class Dish {
 			   inverseJoinColumns = @JoinColumn(name="t_id"))
 	private Set<Tag> tagsAssoc;
 	
-	@OneToMany
-	@JoinColumn(name="d_id")
 	private List<Review> reviewsAssoc;
 	
 	@Column(name="d_rating")
@@ -133,7 +131,7 @@ public class Dish {
 	}
 	
 	// This is a secondary method of setting the rating average; it is based on the current review list. This can be safely called upon object creation, or upon
-	// a new review for the food.
+	// a new review for the dish.
 	
 	public void setRatingAvg() {
 		if (this.reviewsAssoc == null) {
