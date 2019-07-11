@@ -36,7 +36,7 @@ public class UserDAOImpl implements UserDAO {
 		List<User> users = null;
 		
 		try {
-			users = session.createQuery("FROM Users").list();
+			users = session.createQuery("FROM User").list();
 		} catch (HibernateException e) {
 			e.printStackTrace();
 		} finally {
@@ -51,7 +51,7 @@ public class UserDAOImpl implements UserDAO {
 		User user = null;
 		
 		try {
-			List<User> users = session.createQuery("FROM Users").list();
+			List<User> users = session.createQuery("FROM User").list();
 			for (User u : users) {
 				if (u.getUsername().equalsIgnoreCase(username)) {
 					user = u;

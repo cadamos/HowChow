@@ -24,26 +24,29 @@ public class UserDAOTest {
 	public void canSelectAllUsers() {
 		List<User> users = UserService.selectAllUsers();
 		Assert.assertEquals(users.size(), 4);
-		
 	}
 	
 	@Test
 	public void canSelectUserById() {
-		Assert.assertEquals(UserService.selectUserById(51).getUsername(), "user2");
+		List<User> users = UserService.selectAllUsers();
+		for (User u : users) {
+			if (u.getUsername().equals("user2")) {
+				Assert.assertNotNull(UserService.selectUserById(u.getId()));
+			}
+		}
 	}
 	
 	@Test
 	public void canSelectUserByUsername() {
-		Assert.assertEquals(UserService.selectUserByUsername("user3").getId(), 52);
+		Assert.assertNotNull(UserService.selectUserByUsername("user3"));
 	}
 	
 	@Test
 	public void canUpdateUser() {
-		User u = UserService.selectUserById(50);
+		User u = UserService.selectUserByUsername("user1");
 		u.setUsername("newUser1");
 		UserService.updateUser(u);
-		u = UserService.selectUserById(50);
-		Assert.assertEquals(u.getUsername(), "newUser1");
+		Assert.assertNotNull(UserService.selectUserByUsername("newUser1"));
 	}
 	
 	@AfterSuite
