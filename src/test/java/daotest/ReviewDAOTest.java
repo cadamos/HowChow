@@ -30,15 +30,38 @@ public class ReviewDAOTest {
 	}
 	@Test(priority=2)
 	public void getReview() {
-		
+		for(Review rs: ReviewService.getAllReviews()) {
+			if(rs.getComment().equals("This pizza is greattt")) {
+				System.out.println(rs.getComment());
+				Assert.assertNotNull(ReviewService.getReviewById(rs.getR_id()));
+			}
+		}
+
+	}
+	@Test(priority=3)
+	public void upReview() {
+		for(Review rs: ReviewService.getAllReviews()) {
+			if(rs.getComment().equals("This pizza is greattt")) {
+				System.out.println(rs.getComment());
+				Assert.assertTrue(ReviewService.upReview(rs));
+			}
+		}
+
+	}
+	@Test(priority=4)
+	public void downReview() {
+		for(Review rs: ReviewService.getAllReviews()) {
+			if(rs.getComment().equals("This pizza is greattt")) {
+				System.out.println(rs.getComment());
+				Assert.assertTrue(ReviewService.downReview(rs));
+			}
+		}
+
 	}
 	
 	@AfterSuite
 	public void tearDown() {
-		UserService.deleteUserById(100);
-		TagService.deleteTagByName("test");
-		DishService.deleteDishById(50);
-		ReviewService.deleteReview(50);
+		UserService.deleteUserById(UserService.selectUserByUsername("user").getId());
 	}
 }
 
