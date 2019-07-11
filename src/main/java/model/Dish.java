@@ -32,19 +32,20 @@ public class Dish {
 	@Column(name="d_img")
 	private String img;
 	
-	@Column(name="d_name")
+	@Column(name="d_name", unique=true)
 	private String name;
 	
 	@Column(name="d_desc")
 	private String description;
 	
-	@ManyToMany(fetch=FetchType.EAGER)
+	@ManyToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL)
 	@JoinTable(name="dish_tag",
 			   joinColumns = @JoinColumn(name="d_id"),
 			   inverseJoinColumns = @JoinColumn(name="t_id"))
 	private List<Tag> tagsAssoc = new ArrayList<Tag>();
 	
 	@OneToMany(cascade = CascadeType.ALL)
+	@JoinColumn(name="d_review")
 	private List<Review> reviewsAssoc = new ArrayList<Review>();
 	
 	@Column(name="d_rating")

@@ -25,10 +25,7 @@ public class Review implements Comparable<Review>{
 	private int r_id;
 	@ManyToOne
 	@JoinColumn(name="u_id")
-	private User user;
-	@ManyToOne 
-	@JoinColumn(name="d_id")
-	private Dish dish;
+	private User user; 
 	@Column(name="rating")
 	private int rating;
 	@Column(name="userRating")
@@ -44,7 +41,6 @@ public class Review implements Comparable<Review>{
 	public Review(User user, Dish dish, int rating) {
 		super();
 		this.user = user;
-		this.dish = dish;
 		this.rating = rating;
 	}
 	
@@ -52,7 +48,6 @@ public class Review implements Comparable<Review>{
 		super();
 		this.r_id = r_id;
 		this.user = user;
-		this.dish = dish;
 		this.rating = rating;
 		this.userRating = userRating;
 		this.date = date;
@@ -64,14 +59,6 @@ public class Review implements Comparable<Review>{
 
 	public void setUser(User user) {
 		this.user = user;
-	}
-
-	public Dish getDish() {
-		return dish;
-	}
-
-	public void setDish(Dish dish) {
-		this.dish = dish;
 	}
 
 	public int getR_id() {
