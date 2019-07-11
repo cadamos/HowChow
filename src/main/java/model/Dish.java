@@ -1,5 +1,6 @@
 package model;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -41,9 +42,10 @@ public class Dish {
 	@JoinTable(name="dish_tag",
 			   joinColumns = @JoinColumn(name="d_id"),
 			   inverseJoinColumns = @JoinColumn(name="t_id"))
-	private Set<Tag> tagsAssoc;
+	private List<Tag> tagsAssoc = new ArrayList<Tag>();
 	
-	private List<Review> reviewsAssoc;
+	@OneToMany(cascade = CascadeType.ALL)
+	private List<Review> reviewsAssoc = new ArrayList<Review>();
 	
 	@Column(name="d_rating")
 	private float ratingAvg;
@@ -55,7 +57,7 @@ public class Dish {
 		super();
 	}
 
-	public Dish(String img, String name, String description, Set<Tag> tagsAssoc, String restaurant) {
+	public Dish(String img, String name, String description, List<Tag> tagsAssoc, String restaurant) {
 		super();
 		this.img = img;
 		this.name = name;
@@ -64,13 +66,24 @@ public class Dish {
 		this.restaurant = restaurant;
 	}
 
-	public Dish(int d_id, String img, String name, String description, Set<Tag> tagsAssoc, String restaurant) {
+	public Dish(int d_id, String img, String name, String description, List<Tag> tagsAssoc, String restaurant) {
 		super();
 		this.d_id = d_id;
 		this.img = img;
 		this.name = name;
 		this.description = description;
 		this.tagsAssoc = tagsAssoc;
+		this.restaurant = restaurant;
+	}
+
+	public Dish(String img, String name, String description, List<Tag> tagsAssoc, List<Review> reviewsAssoc,
+			String restaurant) {
+		super();
+		this.img = img;
+		this.name = name;
+		this.description = description;
+		this.tagsAssoc = tagsAssoc;
+		this.reviewsAssoc = reviewsAssoc;
 		this.restaurant = restaurant;
 	}
 
@@ -106,11 +119,11 @@ public class Dish {
 		this.description = description;
 	}
 
-	public Set<Tag> getTagsAssoc() {
+	public List<Tag> getTagsAssoc() {
 		return tagsAssoc;
 	}
 
-	public void setTagsAssoc(Set<Tag> tagsAssoc) {
+	public void setTagsAssoc(List<Tag> tagsAssoc) {
 		this.tagsAssoc = tagsAssoc;
 	}
 
