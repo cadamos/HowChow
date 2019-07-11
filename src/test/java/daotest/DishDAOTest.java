@@ -8,6 +8,7 @@ import java.util.Set;
 
 import org.junit.Test;
 import model.Dish;
+import model.Tag;
 import service.DishService;
 
 public class DishDAOTest {
@@ -43,7 +44,7 @@ public class DishDAOTest {
 		Dish test2 = new Dish(img,name2,description,tags,restaurant);
 		ArrayList<Dish> testdishes = new ArrayList<Dish>();
 		
-		ArrayList<Dish> dishes = DishService.selectDishesByTag(testtag);
+		ArrayList<Dish> dishes = DishService.selectDishByTag(testtag);
 	}
 	
 }
