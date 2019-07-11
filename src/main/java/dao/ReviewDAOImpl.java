@@ -66,13 +66,16 @@ public class ReviewDAOImpl implements ReviewDAO {
 		try {
 			session.beginTransaction();
 
-			session.saveOrUpdate(r);
+			session.merge(r);
 
 			session.getTransaction().commit();
+			return true;
+
 		} catch (HibernateException e) {
 			e.printStackTrace();
 		} finally {
-			session.getTransaction();
+			session.close();
+			
 		}
 		return false;
 	}
