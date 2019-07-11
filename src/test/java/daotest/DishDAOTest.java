@@ -19,7 +19,6 @@ public class DishDAOTest {
 	
 	@BeforeSuite
 	public void setUp() {
-		System.out.println(DishService.selectDishById(51));
 		ArrayList<Tag> tags = new ArrayList<Tag>();
 		String img = "https://fakeimage.com";
 		String description = "Test description.";
