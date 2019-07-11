@@ -4,6 +4,7 @@ import java.util.ArrayList;
 
 import dao.DishDAOImpl;
 import model.Dish;
+import model.Tag;
 
 public class DishService {
 
@@ -18,8 +19,8 @@ public class DishService {
 		return allDishes;
 	}
 	
-	public static ArrayList<Dish> selectDishByTag(Tag t) {
-		ArrayList<Dish> dishes = (ArrayList<Dish>) dd.selectDishesByTag(t);
+	public static ArrayList<Dish> selectDishesByTags(ArrayList<Tag> tags) {
+		ArrayList<Dish> dishes = (ArrayList<Dish>) dd.selectDishesByTags(tags);
 		return dishes;
 	}
 	

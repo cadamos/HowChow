@@ -10,6 +10,7 @@ import org.hibernate.Session;
 import org.hibernate.criterion.CriteriaQuery;
 
 import model.Dish;
+import model.Tag;
 import util.HibernateUtil;
 
 public class DishDAOImpl implements DishDAO {
@@ -51,18 +52,16 @@ public class DishDAOImpl implements DishDAO {
 
 
 	@Override
-	public List<Dish> selectDishesByTag(Tag t) {
+	public List<Dish> selectDishesByTags(ArrayList<Tag> tags) {
 		Session session = HibernateUtil.getSession();
 		List<Dish> dishes = new ArrayList<Dish>();
 		
 		try {
-			
 			List<Dish> allDishes = session.createCriteria(Dish.class).list();
 			for (Dish d: allDishes) {
-				if (d.getTagsAssoc().contains(t)) {
+				if(d.getTagsAssoc().containsAll(tags)) {
 					dishes.add(d);
 				}
-				
 			}
 		} catch (HibernateException he) {
 			he.printStackTrace();
