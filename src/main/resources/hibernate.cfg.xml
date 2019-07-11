@@ -37,7 +37,7 @@
         
         <!-- What tells hibernate how to deal with the database -->
         <property name="hibernate.hbm2ddl.auto">
-        	create
+        	update
         </property>
         
         <!-- Mappings -->
