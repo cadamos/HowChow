@@ -24,17 +24,17 @@ public class Review implements Comparable<Review> {
 	@GeneratedValue(generator = "rev_seq", strategy = GenerationType.SEQUENCE)
 	private int r_id;
 	@ManyToOne
-	@JoinColumn(name = "u_id")
+	@JoinColumn(name = "r_user")
 	private User user;
-	@Column(name = "rating")
+	@Column(name = "r_rating")
 	private int rating;
-	@Column(name = "comment")
+	@Column(name = "r_comment")
 	private String comment;
-	@Column(name = "userRating")
+	@Column(name = "r_userRating")
 	private int userRating = 0;
-	@Column(name = "date")
+	@Column(name = "r_date")
 	@Temporal(TemporalType.DATE)
-	private Date date = new Date();
+	private Date r_date = new Date();
 
 
 
@@ -54,7 +54,7 @@ public class Review implements Comparable<Review> {
 		this.rating = rating;
 		this.comment = comment;
 		this.userRating = userRating;
-		this.date = date;
+		this.r_date = date;
 	}
 
 
@@ -62,7 +62,7 @@ public class Review implements Comparable<Review> {
 	@Override
 	public String toString() {
 		return "Review [r_id=" + r_id + ", user=" + user + ", rating=" + rating + ", comment=" + comment
-				+ ", userRating=" + userRating + ", date=" + date + "]";
+				+ ", userRating=" + userRating + ", date=" + r_date + "]";
 	}
 
 
@@ -113,7 +113,7 @@ public class Review implements Comparable<Review> {
 	}
 
 	public Date getDate() {
-		return date;
+		return r_date;
 	}
 
 	@Override

@@ -6,8 +6,6 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.fasterxml.jackson.databind.ObjectMapper;
-
 import model.Dish;
 import model.User;
 import model.Review;
@@ -17,10 +15,6 @@ import service.UserService;
 
 public class ReviewWebService {
 	
-	public static boolean getReviewById(int r_id) {
-		
-		return false;
-	}
 
 	public static boolean addReview(HttpServletRequest request, HttpServletResponse response) {
 		String username = null;
