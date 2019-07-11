@@ -49,42 +49,42 @@ public static void Process(HttpServletRequest request, HttpServletResponse respo
 				UserWebService.loginUser(request, response);
 				break;
 			}
-			case "/HowChow/addReview.do": {
-				ReviewWebService.addReview(request, response);
-				break;
-			}
-			case "/HowChow/upReview.do": {
-				ReviewWebService.upReview(request, response);
-				break;
-			}
-			case "/HowChow/downReview.do": {
-				ReviewWebService.downReview(request, response);
-				break;
-			}
-			case "/HowChow/deleteReview.do": {
-				ReviewWebService.deleteReview(request, response);
-				break;
-			}
-			case "/HowChow/getTagById.do": {
-				TagWebService.getTagById(request, response);
-				break;
-			}
-			case "/HowChow/getTagByName.do": {
-				TagWebService.getTagByName(request, response);
-				break;
-			}
-			case "/HowChow/deleteTagById.do": {
-				TagWebService.deleteTagById(request, response);
-				break;
-			}
-			case "/HowChow/updateTag.do": {
-				TagWebService.updateTag(request, response);
-				break;
-			}
-			case "/HowChow/insertTag.do": {
-				TagWebService.insertTag(request, response);
-				break;
-			}
+//			case "/HowChow/addReview.do": {
+//				ReviewWebService.addReview(request, response);
+//				break;
+//			}
+//			case "/HowChow/upReview.do": {
+//				ReviewWebService.upReview(request, response);
+//				break;
+//			}
+//			case "/HowChow/downReview.do": {
+//				ReviewWebService.downReview(request, response);
+//				break;
+//			}
+//			case "/HowChow/deleteReview.do": {
+//				ReviewWebService.deleteReview(request, response);
+//				break;
+//			}
+//			case "/HowChow/getTagById.do": {
+//				TagWebService.getTagById(request, response);
+//				break;
+//			}
+//			case "/HowChow/getTagByName.do": {
+//				TagWebService.getTagByName(request, response);
+//				break;
+//			}
+//			case "/HowChow/deleteTagById.do": {
+//				TagWebService.deleteTagById(request, response);
+//				break;
+//			}
+//			case "/HowChow/updateTag.do": {
+//				TagWebService.updateTag(request, response);
+//				break;
+//			}
+//			case "/HowChow/insertTag.do": {
+//				TagWebService.insertTag(request, response);
+//				break;
+//			}
 		}
 	}
 }

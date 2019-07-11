@@ -33,4 +33,8 @@ public class UserService {
 		ud.deleteUserById(id);
 	}
 	
+	public static void deleteUserByUsername(String username) {
+		ud.deleteUserByUsername(username);
+	}
+	
 }

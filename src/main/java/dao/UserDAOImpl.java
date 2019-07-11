@@ -3,7 +3,6 @@ package dao;
 import java.util.List;
 
 import org.hibernate.HibernateException;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -37,7 +36,7 @@ public class UserDAOImpl implements UserDAO {
 		List<User> users = null;
 		
 		try {
-			users = session.createQuery("FROM User").list();
+			users = session.createQuery("FROM Users").list();
 		} catch (HibernateException e) {
 			e.printStackTrace();
 		} finally {
@@ -52,7 +51,7 @@ public class UserDAOImpl implements UserDAO {
 		User user = null;
 		
 		try {
-			List<User> users = session.createQuery("FROM User").list();
+			List<User> users = session.createQuery("FROM Users").list();
 			for (User u : users) {
 				if (u.getUsername().equalsIgnoreCase(username)) {
 					user = u;
@@ -105,6 +104,24 @@ public class UserDAOImpl implements UserDAO {
 		try {
 			tx = session.beginTransaction();
 			session.delete(session.get(User.class, id));
+			tx.commit();
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			tx.rollback();
+		} finally {
+			session.close();
+		}
+	}
+	
+	@Override
+	public void deleteUserByUsername(String username) {
+		Session session = HibernateUtil.getSession();
+		Transaction tx = null;
+		User u = selectUserByUsername(username);
+		
+		try {
+			tx = session.beginTransaction();
+			session.delete(u);
 			tx.commit();
 		} catch (HibernateException e) {
 			e.printStackTrace();
