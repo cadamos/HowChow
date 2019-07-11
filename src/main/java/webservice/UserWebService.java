@@ -3,6 +3,7 @@ package webservice;
 import java.io.IOException;
 import java.util.List;
 
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -64,6 +65,8 @@ public class UserWebService {
 				}
 			}
 			if (login) {
+				Cookie uname = new Cookie("username", username);
+				response.addCookie(uname);
 				response.getWriter().append("true");
 			} else {
 				response.getWriter().append("false");
