@@ -18,6 +18,7 @@ import service.UserService;
 public class ReviewWebService {
 	
 	public static boolean getReviewById(int r_id) {
+		
 		return false;
 	}
 
@@ -33,7 +34,6 @@ public class ReviewWebService {
 		if (username == null) {
 			try {
 				response.getWriter().append("No User").close();
-				;
 			} catch (IOException e) {
 				e.printStackTrace();
 			}
