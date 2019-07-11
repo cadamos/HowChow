@@ -16,17 +16,9 @@ import service.ReviewService;
 import service.UserService;
 
 public class ReviewWebService {
-	public static void getReviewsByDishId(HttpServletRequest request, HttpServletResponse response) {
-		int d_id = Integer.parseInt(request.getParameter("d_id"));
-		ObjectMapper om = new ObjectMapper();
-		try {
-			// for(Request r: RequestService.userRequest(id)) {
-			String json = om.writeValueAsString(ReviewService.getReviewsByDishId(d_id));
-			response.getWriter().append(json).close();
-			// }
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	
+	public static boolean getReviewById(int r_id) {
+		return false;
 	}
 
 	public static boolean addReview(HttpServletRequest request, HttpServletResponse response) {
@@ -51,7 +43,7 @@ public class ReviewWebService {
 		Dish d = DishService.selectDishById(Integer.parseInt(request.getParameter("d_id")));
 		String comment = request.getParameter("comment");
 		int rating = Integer.parseInt(request.getParameter("rating"));
-		return ReviewService.addReview(new Review(u, d, rating, comment));
+		return ReviewService.addReview(new Review(u, rating, comment));
 	}
 
 	public static boolean upReview(HttpServletRequest request, HttpServletResponse response) {
@@ -62,5 +54,10 @@ public class ReviewWebService {
 	public static boolean downReview(HttpServletRequest request, HttpServletResponse response) {
 		int r_id = Integer.parseInt(request.getParameter("r_id"));
 		return ReviewService.downReview((ReviewService.getReviewById(r_id)));
+	}
+	
+	public static boolean deleteReview(HttpServletRequest request, HttpServletResponse response) {
+		int r_id = Integer.parseInt(request.getParameter("r_id"));
+		return ReviewService.deleteReview(r_id);
 	}
 }

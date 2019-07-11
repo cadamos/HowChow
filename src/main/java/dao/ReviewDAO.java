@@ -6,12 +6,14 @@ import model.Review;
 
 public interface ReviewDAO {
 
-	List<Review> getAllReviews();
+	List<Review> selectAllReviews();
 
-	Review getReviewById(int r_id);
+	Review selectReviewById(int r_id);
 
-	boolean addReview(Review r);
+	boolean insertReview(Review r);
 
 	boolean updateReview(Review r);
+	
+	boolean deleteReview(int r_id);
 
 }

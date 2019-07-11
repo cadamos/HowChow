@@ -12,7 +12,7 @@ import util.HibernateUtil;
 public class ReviewDAOImpl implements ReviewDAO {
 
 	@Override
-	public List<Review> getAllReviews() {
+	public List<Review> selectAllReviews() {
 		Session session = HibernateUtil.getSession();
 		List<Review> reviews = null;
 
@@ -27,7 +27,7 @@ public class ReviewDAOImpl implements ReviewDAO {
 	}
 
 	@Override
-	public Review getReviewById(int r_id) {
+	public Review selectReviewById(int r_id) {
 		Session session = HibernateUtil.getSession();
 		Review review = null;
 		try {
@@ -42,7 +42,7 @@ public class ReviewDAOImpl implements ReviewDAO {
 	}
 
 	@Override
-	public boolean addReview(Review r) {
+	public boolean insertReview(Review r) {
 		Session session = HibernateUtil.getSession();
 		Transaction tx = null;
 
@@ -73,6 +73,25 @@ public class ReviewDAOImpl implements ReviewDAO {
 			e.printStackTrace();
 		} finally {
 			session.getTransaction();
+		}
+		return false;
+	}
+
+	@Override
+	public boolean deleteReview(int r_id) {
+		Session session = HibernateUtil.getSession();
+		Transaction tx = null;
+		
+		try {
+			tx = session.beginTransaction();
+			session.delete(session.get(Review.class, r_id));
+			tx.commit();
+			return true;
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			tx.rollback();
+		} finally {
+			session.close();
 		}
 		return false;
 	}

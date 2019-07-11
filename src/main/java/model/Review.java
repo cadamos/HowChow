@@ -26,9 +26,6 @@ public class Review implements Comparable<Review> {
 	@ManyToOne
 	@JoinColumn(name = "u_id")
 	private User user;
-	@ManyToOne
-	@JoinColumn(name = "d_id")
-	private Dish dish;
 	@Column(name = "rating")
 	private int rating;
 	@Column(name = "comment")
@@ -39,24 +36,36 @@ public class Review implements Comparable<Review> {
 	@Temporal(TemporalType.DATE)
 	private Date date = new Date();
 
-	public Review(User user, Dish dish, int rating, String comment) {
+
+
+	public Review(User user, int rating, String comment) {
 		super();
 		this.user = user;
-		this.dish = dish;
 		this.rating = rating;
 		this.comment = comment;
 	}
+	
+	
 
-	public Review(int r_id, User user, Dish dish, int rating, String comment, int userRating, Date date) {
+	public Review(int r_id, User user, int rating, String comment, int userRating, Date date) {
 		super();
 		this.r_id = r_id;
 		this.user = user;
-		this.dish = dish;
 		this.rating = rating;
 		this.comment = comment;
 		this.userRating = userRating;
 		this.date = date;
 	}
+
+
+
+	@Override
+	public String toString() {
+		return "Review [r_id=" + r_id + ", user=" + user + ", rating=" + rating + ", comment=" + comment
+				+ ", userRating=" + userRating + ", date=" + date + "]";
+	}
+
+
 
 	public String getComment() {
 		return comment;
@@ -74,13 +83,6 @@ public class Review implements Comparable<Review> {
 		this.user = user;
 	}
 
-	public Dish getDish() {
-		return dish;
-	}
-
-	public void setDish(Dish dish) {
-		this.dish = dish;
-	}
 
 	public int getR_id() {
 		return r_id;
