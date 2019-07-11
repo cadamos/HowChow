@@ -1,6 +1,5 @@
 package model;
 
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -9,8 +8,6 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
-
-import service.UserService;
 
 @Entity
 @Table(name="Users")
@@ -89,22 +86,4 @@ public class User {
         return user.username.equals(username) &&
                 user.password == password;
     }
-	
-	public boolean login(String username, String password) {
-		List<User> users = UserService.selectAllUsers();
-		for (User u : users) {
-			if (u.getUsername().equalsIgnoreCase(username) && u.getPassword().equals(password)) {
-				return true;
-			}
-		}
-		return false;
-	}
-	
-	public User register(String username, String password) {
-		User u = null;
-		if (!login(username, password)) {
-			u = new User(username, password);
-		}
-		return u;
-	}
 }
