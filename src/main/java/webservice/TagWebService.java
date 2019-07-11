@@ -62,6 +62,9 @@ public class TagWebService {
 		try {
 			if (t.getT_id() == t_id) {
 				TagService.deleteTagById(t_id);
+				String message = "Tag has been deleted";
+				String json = om.writeValueAsString(message);
+				response.getWriter().append(json).close();
 
 			} else {
 				String message = "Tag not found";
@@ -76,16 +79,15 @@ public class TagWebService {
 	}
 
 	public void updateTag(HttpServletRequest request, HttpServletResponse response) {
-		int t_id = Integer.parseInt(request.getParameter("t_id"));
 		String t_name = request.getParameter("t_name");
-		Tag t = TagService.selectTagById(t_id);
-
+		Tag t = TagService.selectTagByName(t_name);
 		ObjectMapper om = new ObjectMapper();
 		try {
-			if (t.getT_id() == t_id && t_name != null) {
-				t.setT_id(t_id);
-				t.setT_name(t_name);
+			if (t != null) {
+				String message = "Tag tag has been updated";
 				TagService.updateTag(t);
+				String json = om.writeValueAsString(message);
+				response.getWriter().append(json).close();
 
 			} else {
 				String message = " not found";
@@ -100,21 +102,21 @@ public class TagWebService {
 	}
 
 	public void insertTag(HttpServletRequest request, HttpServletResponse response) {
-		int t_id = Integer.parseInt(request.getParameter("t_id"));
 		String t_name = request.getParameter("t_name");
-		Tag t = TagService.selectTagById(t_id);
+		Tag t = TagService.selectTagByName(t_name);
 
 		ObjectMapper om = new ObjectMapper();
 		try {
-			if (t.getT_id() == t_id && t_name.equals(t_name)) {
+			if (t != null) {
 				String message = "Tag already exist";
 				String json = om.writeValueAsString(message);
 				response.getWriter().append(json).close();
 
 			} else {
-				t.setT_id(t_id);
-				t.setT_name(t_name);
-				TagService.insertTag(t);
+				String message = "Taghas been inserted";
+				TagService.insertTag(new Tag(t_name));
+				String json = om.writeValueAsString(new Tag(message));
+				response.getWriter().append(json).close();
 			}
 
 		} catch (Exception e) {
