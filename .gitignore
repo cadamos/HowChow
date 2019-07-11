@@ -165,4 +165,4 @@ target/classes/project0.html
 .classpath
 
 # TestNG
-test-output/*
+test-output\*
