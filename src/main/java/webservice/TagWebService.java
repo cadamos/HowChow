@@ -10,7 +10,7 @@ import service.TagService;
 
 public class TagWebService {
 
-	public void getTagById(HttpServletRequest request, HttpServletResponse response) {
+	public static void getTagById(HttpServletRequest request, HttpServletResponse response) {
 		int t_id = Integer.parseInt(request.getParameter("t_id"));
 		Tag t = TagService.selectTagById(t_id);
 
@@ -32,7 +32,7 @@ public class TagWebService {
 
 	}
 
-	public void getTagByName(HttpServletRequest request, HttpServletResponse response) {
+	public static void getTagByName(HttpServletRequest request, HttpServletResponse response) {
 		String tag_name = request.getParameter("t_name");
 		Tag t = TagService.selectTagByName(tag_name);
 
@@ -54,7 +54,7 @@ public class TagWebService {
 
 	}
 
-	public void deleteTagById(HttpServletRequest request, HttpServletResponse response) {
+	public static void deleteTagById(HttpServletRequest request, HttpServletResponse response) {
 		int t_id = Integer.parseInt(request.getParameter("t_id"));
 		Tag t = TagService.selectTagById(t_id);
 
@@ -78,7 +78,7 @@ public class TagWebService {
 
 	}
 
-	public void updateTag(HttpServletRequest request, HttpServletResponse response) {
+	public static void updateTag(HttpServletRequest request, HttpServletResponse response) {
 		String t_name = request.getParameter("t_name");
 		Tag t = TagService.selectTagByName(t_name);
 		ObjectMapper om = new ObjectMapper();
@@ -101,7 +101,7 @@ public class TagWebService {
 
 	}
 
-	public void insertTag(HttpServletRequest request, HttpServletResponse response) {
+	public static void insertTag(HttpServletRequest request, HttpServletResponse response) {
 		String t_name = request.getParameter("t_name");
 		Tag t = TagService.selectTagByName(t_name);
 
