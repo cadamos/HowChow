@@ -163,3 +163,6 @@ buildNumber.properties
 MANIFEST.MF
 target/classes/project0.html
 .classpath
+
+# TestNG
+test-output/*
