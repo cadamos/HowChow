@@ -1,5 +1,6 @@
 package service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import dao.ReviewDAOImpl;
@@ -17,7 +18,20 @@ public class ReviewService {
 	public static Review getReviewById(int r_id) {
 		return rd.selectReviewById(r_id);
 	}
-
+	
+	public static List<Review> getReviewsByDishId(int d_id){
+		List<Review> revs = new ArrayList<Review>();
+		
+		for(Review r : getAllReviews()) {
+			if(r.getDish().getD_id()==d_id) {
+				revs.add(r);	
+			}
+			
+		}
+		
+		return revs;
+	}
+	
 	public static boolean addReview(Review r) {
 		return rd.insertReview(r);
 	}
