@@ -44,9 +44,6 @@ public class Dish {
 			   inverseJoinColumns = @JoinColumn(name="t_id"))
 	private List<Tag> tagsAssoc = new ArrayList<Tag>();
 	
-	@OneToMany(cascade = CascadeType.ALL)
-	private List<Review> reviewsAssoc = new ArrayList<Review>();
-	
 	@Column(name="d_rating")
 	private float ratingAvg;
 	
@@ -73,17 +70,6 @@ public class Dish {
 		this.name = name;
 		this.description = description;
 		this.tagsAssoc = tagsAssoc;
-		this.restaurant = restaurant;
-	}
-
-	public Dish(String img, String name, String description, List<Tag> tagsAssoc, List<Review> reviewsAssoc,
-			String restaurant) {
-		super();
-		this.img = img;
-		this.name = name;
-		this.description = description;
-		this.tagsAssoc = tagsAssoc;
-		this.reviewsAssoc = reviewsAssoc;
 		this.restaurant = restaurant;
 	}
 
@@ -127,13 +113,7 @@ public class Dish {
 		this.tagsAssoc = tagsAssoc;
 	}
 
-	public List<Review> getReviewsAssoc() {
-		return reviewsAssoc;
-	}
 
-	public void setReviewsAssoc(List<Review> reviewsAssoc) {
-		this.reviewsAssoc = reviewsAssoc;
-	}
 
 	public float getRatingAvg() {
 		return ratingAvg;
@@ -141,23 +121,6 @@ public class Dish {
 
 	public void setRatingAvg(int ratingAvg) {
 		this.ratingAvg = ratingAvg;
-	}
-	
-	// This is a secondary method of setting the rating average; it is based on the current review list. This can be safely called upon object creation, or upon
-	// a new review for the dish.
-	
-	public void setRatingAvg() {
-		if (this.reviewsAssoc == null) {
-			this.ratingAvg = 0;
-		} else {
-			float count = 0;
-			float amt = 0;
-			for (Review r: this.reviewsAssoc) {
-				amt += r.getRating();
-				count += 1;
-			}
-			this.ratingAvg = amt/count;
-		}
 	}
 
 	public String getRestaurant() {

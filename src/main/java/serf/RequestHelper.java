@@ -18,7 +18,7 @@ public static void Process(HttpServletRequest request, HttpServletResponse respo
 				DishWebService.selectDishById(request, response);
 				break;
 			}
-			case "/HowChow/selectDishesByTag.do": {
+			case "/HowChow/selectDishesByTags.do": {
 				DishWebService.selectDishesByTags(request, response);
 				break;
 			}

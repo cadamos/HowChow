@@ -17,11 +17,6 @@ import javax.persistence.CascadeType;
 @Entity
 @Table(name="Tags")
 public class Tag {
-<<<<<<< HEAD
-	
-	
-=======
->>>>>>> 58b109f08a3398e8847a8558e5ec880b9b689e49
 	@Id
 	@SequenceGenerator(sequenceName="tag_seq", name="t_seq")
 	@GeneratedValue(generator="t_seq",strategy=GenerationType.SEQUENCE)

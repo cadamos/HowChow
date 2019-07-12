@@ -19,7 +19,7 @@ public class DishDAOImpl implements DishDAO {
 		
 		try {
 			
-			dish = (Dish) session.get(Dish.class, id);
+			dish = (Dish) session.load(Dish.class, id);
 			
 		} catch (HibernateException he) {
 			he.printStackTrace();
