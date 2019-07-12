@@ -13,15 +13,15 @@
         </property>
         
         <property name="hibernate.connection.url">
-        	jdbc:oracle:thin:@christinesdb.cagrve4n6aso.us-east-2.rds.amazonaws.com:1521:ORCL
+        	jdbc:oracle:thin:@database-1.c8oijam4o0cc.us-east-2.rds.amazonaws.com:1521:KARIMDB
         </property>
         
         <property name="hibernate.connection.username">
-        	christine
+        	admin
         </property>
         
         <property name="hibernate.connection.password">
-        	password
+        	runescape7
         </property>
         
         <!-- These may be optional -->
