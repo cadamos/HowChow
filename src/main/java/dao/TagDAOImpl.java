@@ -136,17 +136,8 @@ public class TagDAOImpl implements TagDAO {
 		System.out.println(t);
 		try {
 			session.beginTransaction();
-			session.delete(t);
+			session.delete(session.get(Tag.class, t.getT_id()));
 			tx.commit();
-			
-//			List<Tag> names = session.createQuery("FROM Tag").list();
-//			for (Tag t : names) {
-//				if (t.getT_name()==name) {
-//					session.delete(t);
-//					tx.commit();
-//				}
-//			}
-
 		} catch (HibernateException e) {
 			e.printStackTrace();
 			tx.rollback();

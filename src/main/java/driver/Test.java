@@ -16,7 +16,7 @@ public class Test {
 //		UserService.insertUser(u1);
 		TagService.deleteTagByName("pasta");
 		
-		System.out.println(UserService.selectAllUsers());
+		//System.out.println(UserService.selectAllUsers());
 
 	}
 }
