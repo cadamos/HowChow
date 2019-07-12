@@ -97,7 +97,7 @@ public class DishDAOImpl implements DishDAO {
 		try {
 			
 			session.beginTransaction();
-			session.saveOrUpdate(change); 
+			session.merge(change); 
 			session.getTransaction().commit();
 			
 		} catch (HibernateException he) {
