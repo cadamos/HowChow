@@ -1,50 +1,113 @@
 package daotest;
 
-import static org.junit.Assert.assertTrue;
+
 
 import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.List;
 
-import org.junit.Test;
+import org.testng.Assert;
+import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeSuite;
+import org.testng.annotations.Test;
+
 import model.Dish;
 import model.Tag;
 import service.DishService;
+import service.TagService;
 
 public class DishDAOTest {
+	int id = 0;
+	int id2 = 0;
+	int tid = 0;
+	int tid2 = 0;
 	
-	@Test
-	public void get_Dish_By_Id() {
-		Set<Tag> tags = new HashSet<Tag>();
+	@BeforeSuite
+	public void setUp() {
+		ArrayList<Tag> tags = new ArrayList<Tag>();
 		String img = "https://fakeimage.com";
 		String description = "Test description.";
 		String name = "Test";
 		String restaurant = "Testaurant";
-		int id = 50000;
-		Dish test = new Dish(id,img,name,description,tags,restaurant);
-		DishService.insertDish(test);
-		Dish test2 = DishService.selectDishById(id);
-		assertTrue(test.equals(test2));
+		Dish d = new Dish(img,name,description,tags,restaurant);
+		id = DishService.insertDish(d);
+		ArrayList<Tag> tags2 = new ArrayList<Tag>();
+		String img2 = "https://fakeimage.com";
+		String description2 = "Test description.";
+		String name2 = "Test2";
+		String restaurant2 = "Testaurant";
+		Dish d2 = new Dish(img2,name2,description2,tags2,restaurant2);
+		id2 = DishService.insertDish(d2);
+		System.out.println("end of setup");
+	}
+	
+	@Test(priority=1)
+	public void selectDishById() {
+		ArrayList<Tag> tags = new ArrayList<Tag>();
+		String img = "https://fakeimage.com";
+		String description = "Test description.";
+		String name = "Test";
+		String restaurant = "Testaurant";
+		Dish d = new Dish(id,img,name,description,tags,restaurant);
+		Dish d2 = DishService.selectDishById(id);
+		Assert.assertEquals(d, d2);
+		System.out.println("end of test 1");
+	}
+	
+	@Test(priority=2)
+	public void insertDish() {
+		int id3 = 0;
+		ArrayList<Tag> tags = new ArrayList<Tag>();
+		String img = "https://fakeimage.com";
+		String description = "Test description.";
+		String name = "Test3";
+		String restaurant = "Testaurant";
+		Dish d = new Dish(img,description,name,tags,restaurant);
+		id3 = DishService.insertDish(d);
+		Assert.assertTrue(id3 != 0);
+		DishService.deleteDishById(id3);
+		System.out.println("end of test 2");
+	}
+	
+	@Test(priority=3)
+	public void updateDish() {
+		ArrayList<Tag> tags = TagService.selectAllTags();
+		String img = "https://fakeimage.com";
+		String description = "Test description.";
+		String name = "Test";
+		String restaurant = "Testaurant";
+		Dish d = new Dish(id,img,name,description,null,restaurant);
+		d.setTagsAssoc(tags);
+		DishService.updateDish(d);
+		Assert.assertEquals(d, DishService.selectDishById(id));
+	}
+	
+	@Test(priority=4)
+	public void selectAllDishes() {
+		ArrayList<Dish> dishes = new ArrayList<Dish>();
+		dishes.add(DishService.selectDishById(id));
+		dishes.add(DishService.selectDishById(id2));
+		ArrayList<Dish> dishes2 = DishService.selectAllDishes();
+		System.out.println(dishes);
+		System.out.println(dishes2);
+		Assert.assertEquals(dishes2, dishes);
+	}
+	
+	@Test(priority=5)
+	public void selectDishesByTags() {
+		ArrayList<Dish> dishes = new ArrayList<Dish>();
+		dishes.add(DishService.selectDishById(id));
+		ArrayList<Tag> tags2 = TagService.selectAllTags();
+		ArrayList<Dish> dishtag = DishService.selectDishesByTags(tags2);
+		Assert.assertEquals(dishtag,dishes);
+	}
+	
+	@Test(priority=6)
+	public void deleteDishById() {
+		DishService.deleteDishById(id2);
+	}
+	
+	@AfterSuite
+	public void tearDown() {
 		DishService.deleteDishById(id);
 	}
-	
-	@Test
-	public void get_Dishes_By_Tag() {
-		Set<Tag> tags = new HashSet<Tag>();
-		int t_id = 50000;
-		Tag testtag = new Tag(50000, "test tag");
-		tags.add(testtag);
-		String img = "https://fakeimage.com";
-		String description = "Test description.";
-		String name = "Test";
-		String name2 = "Test 2";
-		String restaurant = "Testaurant";
-		int id = 50000;
-		Dish test = new Dish(img,name,description,tags,restaurant);
-		Dish test2 = new Dish(img,name2,description,tags,restaurant);
-		ArrayList<Dish> testdishes = new ArrayList<Dish>();
-		
-		ArrayList<Dish> dishes = DishService.selectDishByTag(testtag);
-	}
-	
 }

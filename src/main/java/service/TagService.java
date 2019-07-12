@@ -1,5 +1,6 @@
 package service;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import dao.TagDAOImpl;
@@ -12,8 +13,8 @@ public class TagService {
 		return tg.insertTag(t);
 	}
 	
-	public static List<Tag> selectAllTags(){
-		return tg.selectAllTags();	
+	public static ArrayList<Tag> selectAllTags(){
+		return (ArrayList<Tag>) tg.selectAllTags();	
 	}
 	
 	public static Tag selectTagById(int id) {
@@ -21,7 +22,7 @@ public class TagService {
 	}
 	
 	
-	public static void updateTagr(Tag t) {
+	public static void updateTag(Tag t) {
 		tg.updateTag(t);
 	}
 	

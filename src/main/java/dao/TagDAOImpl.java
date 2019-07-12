@@ -36,7 +36,7 @@ public class TagDAOImpl implements TagDAO {
 		List<Tag> tags = null;
 		
 		try {
-			tags = session.createQuery("FROM Tags").list();
+			tags = session.createQuery("FROM Tag").list();
 		} catch (HibernateException  e) {
 			e.printStackTrace();
 			
