@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import webservice.DishWebService;
+import webservice.ReviewWebService;
 import webservice.UserWebService;
 
 public class RequestHelper {

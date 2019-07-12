@@ -37,6 +37,10 @@ public class Review implements Comparable<Review> {
 	private Date r_date = new Date();
 
 
+	public Review() {
+		super();
+	}
+
 
 	public Review(User user, int rating, String comment) {
 		super();

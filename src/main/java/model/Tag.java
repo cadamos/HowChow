@@ -17,8 +17,6 @@ import javax.persistence.CascadeType;
 @Entity
 @Table(name="Tags")
 public class Tag {
-	
-	private List<Dish> dish= new ArrayList<>();
 	@Id
 	@SequenceGenerator(sequenceName="tag_seq", name="t_seq")
 	@GeneratedValue(generator="t_seq",strategy=GenerationType.SEQUENCE)
@@ -59,15 +57,6 @@ public class Tag {
 	
 	public void setT_name(String t_name) {
 		this.t_name = t_name;
-	}
-	
-	
-	public List<Dish> getDish() {
-		return dish;
-	}
-
-	public void setDish(List<Dish> dish) {
-		this.dish = dish;
 	}
 
 	@Override
