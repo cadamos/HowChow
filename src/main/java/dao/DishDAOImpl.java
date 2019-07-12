@@ -37,7 +37,7 @@ public class DishDAOImpl implements DishDAO {
 		
 		try {
 			
-			allDishes = session.createCriteria(Dish.class).list();
+			allDishes = session.createQuery("FROM Dish").list();
 			
 		} catch( HibernateException he) {
 			he.printStackTrace();
@@ -54,7 +54,8 @@ public class DishDAOImpl implements DishDAO {
 		List<Dish> dishes = new ArrayList<Dish>();
 		
 		try {
-			List<Dish> allDishes = session.createCriteria(Dish.class).list();
+			List<Dish> allDishes = session.createQuery("FROM Dish").list();
+			System.out.println(allDishes);
 			for (Dish d: allDishes) {
 				if(d.getTagsAssoc().containsAll(tags)) {
 					dishes.add(d);

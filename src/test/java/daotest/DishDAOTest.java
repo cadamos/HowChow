@@ -98,6 +98,7 @@ public class DishDAOTest {
 		dishes.add(DishService.selectDishById(id));
 		ArrayList<Tag> tags2 = TagService.selectAllTags();
 		ArrayList<Dish> dishtag = DishService.selectDishesByTags(tags2);
+		System.out.println(dishtag);
 		Assert.assertEquals(dishtag,dishes);
 	}
 	

@@ -7,7 +7,6 @@
         <methods>
           <include name="tearDown"/>
           <include name="setUp"/>
-          <include name="selectDishesByTags"/>
           <include name="selectAllDishes"/>
         </methods>
       </class> <!-- daotest.DishDAOTest -->

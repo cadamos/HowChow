@@ -66,26 +66,26 @@ public static void Process(HttpServletRequest request, HttpServletResponse respo
 				ReviewWebService.deleteReview(request, response);
 				break;
 			}
-			case "/HowChow/getTagById.do": {
-				TagWebService.getTagById(request, response);
-				break;
-			}
-			case "/HowChow/getTagByName.do": {
-				TagWebService.getTagByName(request, response);
-				break;
-			}
-			case "/HowChow/deleteTagById.do": {
-				TagWebService.deleteTagById(request, response);
-				break;
-			}
-			case "/HowChow/updateTag.do": {
-				TagWebService.updateTag(request, response);
-				break;
-			}
-			case "/HowChow/insertTag.do": {
-				TagWebService.insertTag(request, response);
-				break;
-			}
+//			case "/HowChow/getTagById.do": {
+//				TagWebService.getTagById(request, response);
+//				break;
+//			}
+//			case "/HowChow/getTagByName.do": {
+//				TagWebService.getTagByName(request, response);
+//				break;
+//			}
+//			case "/HowChow/deleteTagById.do": {
+//				TagWebService.deleteTagById(request, response);
+//				break;
+//			}
+//			case "/HowChow/updateTag.do": {
+//				TagWebService.updateTag(request, response);
+//				break;
+//			}
+//			case "/HowChow/insertTag.do": {
+//				TagWebService.insertTag(request, response);
+//				break;
+//			}
 		}
 	}
 }
