@@ -164,5 +164,7 @@ MANIFEST.MF
 target/classes/project0.html
 .classpath
 
+### Ignore .gitignore####
+.gitignore
+
 # TestNG
-test-output\*
