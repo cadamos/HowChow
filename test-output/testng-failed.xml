@@ -5,9 +5,7 @@
     <classes>
       <class name="daotest.UserDAOTest">
         <methods>
-          <include name="canSelectUserById"/>
-          <include name="canSelectUserByUsername"/>
-          <include name="canUpdateUser"/>
+          <include name="canSelectAllUsers"/>
           <include name="tearDown"/>
           <include name="setUp"/>
         </methods>

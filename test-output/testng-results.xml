@@ -2,32 +2,32 @@
 <testng-results skipped="0" failed="0" ignored="0" total="4" passed="4">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="817" started-at="2019-07-11T22:16:41Z" finished-at="2019-07-11T22:16:42Z">
+  <suite name="Default suite" duration-ms="603" started-at="2019-07-12T15:01:28Z" finished-at="2019-07-12T15:01:28Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="817" started-at="2019-07-11T22:16:41Z" finished-at="2019-07-11T22:16:42Z">
+    <test name="Default test" duration-ms="603" started-at="2019-07-12T15:01:28Z" finished-at="2019-07-12T15:01:28Z">
       <class name="daotest.UserDAOTest">
-        <test-method status="PASS" signature="setUp()[pri:0, instance:daotest.UserDAOTest@4678c730]" name="setUp" is-config="true" duration-ms="7548" started-at="2019-07-11T22:16:34Z" finished-at="2019-07-11T22:16:41Z">
+        <test-method status="PASS" signature="setUp()[pri:0, instance:daotest.UserDAOTest@4678c730]" name="setUp" is-config="true" duration-ms="6257" started-at="2019-07-12T15:01:21Z" finished-at="2019-07-12T15:01:28Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- setUp -->
-        <test-method status="PASS" signature="canSelectAllUsers()[pri:0, instance:daotest.UserDAOTest@4678c730]" name="canSelectAllUsers" duration-ms="299" started-at="2019-07-11T22:16:41Z" finished-at="2019-07-11T22:16:42Z">
+        <test-method status="PASS" signature="canSelectAllUsers()[pri:0, instance:daotest.UserDAOTest@4678c730]" name="canSelectAllUsers" duration-ms="191" started-at="2019-07-12T15:01:28Z" finished-at="2019-07-12T15:01:28Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- canSelectAllUsers -->
-        <test-method status="PASS" signature="canSelectUserById()[pri:0, instance:daotest.UserDAOTest@4678c730]" name="canSelectUserById" duration-ms="119" started-at="2019-07-11T22:16:42Z" finished-at="2019-07-11T22:16:42Z">
+        <test-method status="PASS" signature="canSelectUserById()[pri:0, instance:daotest.UserDAOTest@4678c730]" name="canSelectUserById" duration-ms="105" started-at="2019-07-12T15:01:28Z" finished-at="2019-07-12T15:01:28Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- canSelectUserById -->
-        <test-method status="PASS" signature="canSelectUserByUsername()[pri:0, instance:daotest.UserDAOTest@4678c730]" name="canSelectUserByUsername" duration-ms="61" started-at="2019-07-11T22:16:42Z" finished-at="2019-07-11T22:16:42Z">
+        <test-method status="PASS" signature="canSelectUserByUsername()[pri:0, instance:daotest.UserDAOTest@4678c730]" name="canSelectUserByUsername" duration-ms="44" started-at="2019-07-12T15:01:28Z" finished-at="2019-07-12T15:01:28Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- canSelectUserByUsername -->
-        <test-method status="PASS" signature="canUpdateUser()[pri:0, instance:daotest.UserDAOTest@4678c730]" name="canUpdateUser" duration-ms="258" started-at="2019-07-11T22:16:42Z" finished-at="2019-07-11T22:16:42Z">
+        <test-method status="PASS" signature="canUpdateUser()[pri:0, instance:daotest.UserDAOTest@4678c730]" name="canUpdateUser" duration-ms="218" started-at="2019-07-12T15:01:28Z" finished-at="2019-07-12T15:01:28Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- canUpdateUser -->
-        <test-method status="PASS" signature="tearDown()[pri:0, instance:daotest.UserDAOTest@4678c730]" name="tearDown" is-config="true" duration-ms="713" started-at="2019-07-11T22:16:42Z" finished-at="2019-07-11T22:16:43Z">
+        <test-method status="PASS" signature="tearDown()[pri:0, instance:daotest.UserDAOTest@4678c730]" name="tearDown" is-config="true" duration-ms="568" started-at="2019-07-12T15:01:28Z" finished-at="2019-07-12T15:01:29Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- tearDown -->
