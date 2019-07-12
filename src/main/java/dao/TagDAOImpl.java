@@ -36,7 +36,7 @@ public class TagDAOImpl implements TagDAO {
 		List<Tag> tags = null;
 		
 		try {
-			tags = session.createQuery("FROM Tags").list();
+			tags = session.createQuery("FROM Tag").list();
 		} catch (HibernateException  e) {
 			e.printStackTrace();
 			
@@ -71,7 +71,12 @@ public class TagDAOImpl implements TagDAO {
 		Tag tag = null;
 		
 		try {
-			tag = (Tag) session.get(Tag.class, name);
+			List<Tag> names = session.createQuery("FROM Tag").list();
+			for (Tag t : names) {
+				if (t.getT_name().equalsIgnoreCase(name)) {
+					tag = t;
+				}
+			}
 		} catch (HibernateException  e) {
 			e.printStackTrace();
 		}finally {
@@ -127,11 +132,20 @@ public class TagDAOImpl implements TagDAO {
 	public void deleteTagByName(String name) {
 		Session session = HibernateUtil.getSession();
 		Transaction tx = null;
-		
+		Tag t = selectTagByName(name);
+		System.out.println(t);
 		try {
 			session.beginTransaction();
-			session.delete(session.get(Tag.class, name));
+			session.delete(t);
 			tx.commit();
+			
+//			List<Tag> names = session.createQuery("FROM Tag").list();
+//			for (Tag t : names) {
+//				if (t.getT_name()==name) {
+//					session.delete(t);
+//					tx.commit();
+//				}
+//			}
 
 		} catch (HibernateException e) {
 			e.printStackTrace();
