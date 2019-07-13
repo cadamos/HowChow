@@ -50,7 +50,6 @@ public class DishDAOTest {
 		Dish d = new Dish(id,img,name,description,tags,restaurant);
 		System.out.println(d);
 		Dish d2 = DishService.selectDishById(id);
-		System.out.println(d2);
 		Assert.assertEquals(d, d2);
 		System.out.println("end of test 1");
 	}
