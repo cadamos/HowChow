@@ -26,6 +26,9 @@ public class Review implements Comparable<Review> {
 	@ManyToOne
 	@JoinColumn(name = "r_user")
 	private User user;
+	@ManyToOne
+	@JoinColumn(name = "r_dish")
+	private Dish dish;
 	@Column(name = "r_rating")
 	private int rating;
 	@Column(name = "r_comment")
@@ -42,33 +45,65 @@ public class Review implements Comparable<Review> {
 	}
 
 
-	public Review(User user, int rating, String comment) {
+	public Review(User user, Dish dish, int rating, String comment) {
 		super();
 		this.user = user;
 		this.rating = rating;
 		this.comment = comment;
+		this.dish= dish;
 	}
+	
 	
 	
 
-	public Review(int r_id, User user, int rating, String comment, int userRating, Date date) {
+
+
+	public Review(int r_id, User user, Dish dish, int rating, String comment, int userRating, Date r_date) {
 		super();
 		this.r_id = r_id;
 		this.user = user;
+		this.dish = dish;
 		this.rating = rating;
 		this.comment = comment;
 		this.userRating = userRating;
-		this.r_date = date;
+		this.r_date = r_date;
 	}
+
+
+
 
 
 
 	@Override
 	public String toString() {
-		return "Review [r_id=" + r_id + ", user=" + user + ", rating=" + rating + ", comment=" + comment
-				+ ", userRating=" + userRating + ", date=" + r_date + "]";
+		return "Review [r_id=" + r_id + ", user=" + user + ", dish=" + dish + ", rating=" + rating + ", comment="
+				+ comment + ", userRating=" + userRating + ", r_date=" + r_date + "]";
 	}
 
+
+	public Dish getDish() {
+		return dish;
+	}
+
+
+	public void setDish(Dish dish) {
+		this.dish = dish;
+	}
+
+
+	public Date getR_date() {
+		return r_date;
+	}
+
+
+	public void setR_date(Date r_date) {
+		this.r_date = r_date;
+	}
+
+
+	public void setUserRating(int userRating) {
+		this.userRating = userRating;
+	}
 
 
 	public String getComment() {
@@ -116,9 +151,6 @@ public class Review implements Comparable<Review> {
 		this.userRating--;
 	}
 
-	public Date getDate() {
-		return r_date;
-	}
 
 	@Override
 	public int compareTo(Review r) {

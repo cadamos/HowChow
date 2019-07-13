@@ -3,7 +3,6 @@ package dao;
 import java.util.List;
 
 import org.hibernate.HibernateException;
-import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
 
@@ -105,6 +104,24 @@ public class UserDAOImpl implements UserDAO {
 		try {
 			tx = session.beginTransaction();
 			session.delete(session.get(User.class, id));
+			tx.commit();
+		} catch (HibernateException e) {
+			e.printStackTrace();
+			tx.rollback();
+		} finally {
+			session.close();
+		}
+	}
+	
+	@Override
+	public void deleteUserByUsername(String username) {
+		Session session = HibernateUtil.getSession();
+		Transaction tx = null;
+		User u = selectUserByUsername(username);
+		
+		try {
+			tx = session.beginTransaction();
+			session.delete(u);
 			tx.commit();
 		} catch (HibernateException e) {
 			e.printStackTrace();

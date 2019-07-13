@@ -26,7 +26,8 @@ public class ReviewDAOTest {
 	@Test(priority=1)
 	public void addReview(){
 		User u = UserService.selectUserByUsername("user");
-		Assert.assertTrue(ReviewService.addReview(new Review(u, 3, "This pizza is greattt")));
+		Dish d = DishService.selectDishById(1200);
+		Assert.assertTrue(ReviewService.addReview(new Review(u, d,3, "This pizza is greattt dude")));
 	}
 	@Test(priority=2)
 	public void getReview() {
@@ -43,6 +44,7 @@ public class ReviewDAOTest {
 		for(Review rs: ReviewService.getAllReviews()) {
 			if(rs.getComment().equals("This pizza is greattt")) {
 				System.out.println(rs.getComment());
+				ReviewService.upReview(rs);
 				Assert.assertTrue(ReviewService.upReview(rs));
 			}
 		}
@@ -57,6 +59,10 @@ public class ReviewDAOTest {
 			}
 		}
 
+	}
+	@Test(priority=5)
+	public void getAllReviewByDishId() {
+		Assert.assertNotNull(ReviewService.getReviewsByDishId(1200));
 	}
 	
 	@AfterSuite

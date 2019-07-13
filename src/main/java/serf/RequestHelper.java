@@ -4,6 +4,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import webservice.DishWebService;
+import webservice.ReviewWebService;
 import webservice.TagWebService;
 import webservice.UserWebService;
 
@@ -18,7 +19,7 @@ public static void Process(HttpServletRequest request, HttpServletResponse respo
 				DishWebService.selectDishById(request, response);
 				break;
 			}
-			case "/HowChow/selectDishesByTag.do": {
+			case "/HowChow/selectDishesByTags.do": {
 				DishWebService.selectDishesByTags(request, response);
 				break;
 			}

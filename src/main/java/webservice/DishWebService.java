@@ -22,6 +22,7 @@ public class DishWebService {
 		
 		int dId = Integer.parseInt(request.getParameter("d_id"));
 		Dish d = DishService.selectDishById(dId);
+		System.out.println(d);
 		ObjectMapper om = new ObjectMapper();
 		
 		try {
@@ -88,7 +89,7 @@ public class DishWebService {
 		}
 		
 		String restaurant = request.getParameter("restaurant");
-		Dish d = new Dish(img,name,description,tags,reviews,restaurant);
+		Dish d = new Dish(img,name,description,tags,restaurant);
 		DishService.updateDish(d);
 		
 		try {
