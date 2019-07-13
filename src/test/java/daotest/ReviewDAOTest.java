@@ -9,19 +9,15 @@ import org.testng.annotations.Test;
 
 import model.Dish;
 import model.Review;
-import model.Tag;
 import model.User;
 import service.DishService;
 import service.ReviewService;
-import service.TagService;
 import service.UserService;
 
 public class ReviewDAOTest {
 	@BeforeSuite
 	public void setUp() {
 		UserService.insertUser(new User("user", "password"));
-	    //TagService.insertTag(new Tag("test"));
-	    //DishService.insertDish(new Dish("img", "pizza", "this is pizza", TagService.selectAllTags(),"test place"));
 	}
 	@Test(priority=1)
 	public void addReview(){
@@ -43,7 +39,6 @@ public class ReviewDAOTest {
 	public void upReview() {
 		for(Review rs: ReviewService.getAllReviews()) {
 			if(rs.getComment().equals("This pizza is greattt")) {
-				System.out.println(rs.getComment());
 				ReviewService.upReview(rs);
 				Assert.assertTrue(ReviewService.upReview(rs));
 			}
@@ -54,7 +49,6 @@ public class ReviewDAOTest {
 	public void downReview() {
 		for(Review rs: ReviewService.getAllReviews()) {
 			if(rs.getComment().equals("This pizza is greattt")) {
-				System.out.println(rs.getComment());
 				Assert.assertTrue(ReviewService.downReview(rs));
 			}
 		}

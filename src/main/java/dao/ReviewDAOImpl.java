@@ -66,7 +66,7 @@ public class ReviewDAOImpl implements ReviewDAO {
 		try {
 			session.beginTransaction();
 
-			session.merge(r);
+			session.saveOrUpdate(r);
 
 			session.getTransaction().commit();
 			return true;
