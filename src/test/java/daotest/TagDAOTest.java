@@ -1,78 +1,56 @@
 package daotest;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
+import static org.testng.Assert.assertNotNull;
 
 import java.util.ArrayList;
 import java.util.List;
 
-import org.junit.Assert;
-import org.junit.Test;
+import org.testng.Assert;
+import org.testng.annotations.Test;
 
 import dao.TagDAOImpl;
 import model.Tag;
 import service.TagService;
 
+
 public class TagDAOTest {
-
-	@Test
-	public void testInsertTagDAO() {
-		TagDAOImpl t = new TagDAOImpl();
-
-		Tag thetag = new Tag("pasta");
-		int result = thetag.getT_id();
-		System.out.println(t.insertTag(thetag));
-		assertEquals(result, t.insertTag(thetag));
+	
+	@Test(priority = 4)
+	public void InsertTagDAO() {
+		Tag t = new Tag("pasta");
+		Assert.assertNotNull(TagService.insertTag(t));
 	}
-
-	@Test
+	
+	@Test(priority = 1)
 	public void selectTagByIdTagDAO() {
-		TagDAOImpl t = new TagDAOImpl();
-		String result = "roti";
-		Tag thetag = new Tag("roti");
-		assertEquals(result, t.selectTagById(1600).getT_name());
+		Assert.assertNotNull(TagService.selectTagById(1600));
+		//Assert.assertEquals(TagService.selectTagById(1600).getT_name(),"roti" , "pass");
 	}
-
-	@Test
+	
+	@Test(priority = 3)
 	public void selectAllTagDAO() {
-		TagDAOImpl t = new TagDAOImpl();
-		List<Tag> tag = new ArrayList<>();
-		tag = t.selectAllTags();
-		System.out.println(tag);
-		for (Tag ts : tag) {
-			if (ts.getT_name().equals("pasta")) {
-				assertEquals(1900, ts.getT_id());
-			}
-		}
-
+		Assert.assertEquals(2, TagService.selectAllTags().size());
 	}
-
-	@Test
-	public void selectTagById() {
-		TagDAOImpl t = new TagDAOImpl();
-		Tag tag = new Tag();
-		tag = t.selectTagById(1600);
-		System.out.println(tag);
-		assertEquals("roti", tag.getT_name());
-	}
-
-	@Test
+	
+	@Test(priority = 2)
 	public void selectTagByName() {
-		TagDAOImpl t = new TagDAOImpl();
-		Tag tag = new Tag();
-		tag = t.selectTagByName("roti");
-		System.out.println(tag);
-		assertEquals("roti", tag.getT_name());
+		Assert.assertNotNull(TagService.selectTagByName("roti"));
 	}
-
-//	@Test
-//	public void deleteTagByName() {
-//		TagDAOImpl t= new TagDAOImpl();
-//		Tag tag = new Tag();
-//		tag=t.selectTagByName("pasta");
-//		t.deleteTagByName(tag.getT_name());
-//		System.out.println(tag);
-//		t.deleteTagByName("pasta");
-//		//assertNotNull(object);
-//	}
-
+	
+	@Test(priority = 5)
+	public void deleteTagByName() {
+		TagService.deleteTagByName("ratatouille");
+		Assert.assertNull(TagService.selectTagByName("ratatouille"));
+	}
+	
+	@Test(priority = 4)
+	public void updateTag() {
+		Tag t = TagService.selectTagByName("pasta");
+		t.setT_name("ratatouille");
+		TagService.updateTag(t);
+		Assert.assertEquals("ratatouille", TagService.selectTagByName("ratatouille").getT_name());
+	}
+	
+	
 }

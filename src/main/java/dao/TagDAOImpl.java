@@ -114,7 +114,7 @@ public class TagDAOImpl implements TagDAO {
 		Transaction tx = null;
 		
 		try {
-			session.beginTransaction();
+			tx=session.beginTransaction();
 			session.delete(session.get(Tag.class, id));
 			tx.commit();
 
@@ -135,7 +135,7 @@ public class TagDAOImpl implements TagDAO {
 		Tag t = selectTagByName(name);
 		System.out.println(t);
 		try {
-			session.beginTransaction();
+			tx=session.beginTransaction();
 			session.delete(session.get(Tag.class, t.getT_id()));
 			tx.commit();
 		} catch (HibernateException e) {
