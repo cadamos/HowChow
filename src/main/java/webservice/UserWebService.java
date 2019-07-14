@@ -39,13 +39,13 @@ public class UserWebService {
 
 		try {
 			for (User u : users) {
-				if (u.getUsername().equalsIgnoreCase(username) && u.getPassword().equals(password)) {
+				if (u.getUsername().equalsIgnoreCase(username)) {
 					canRegister = false;
 				}
 			}
 			if (canRegister) {
-				user = new User(username, password);
-				UserService.insertUser(user);
+				UserService.insertUser(new User(username, password));
+				user = UserService.selectUserByUsername(username);
 			}
 			ObjectMapper om = new ObjectMapper();
 			String json = om.writeValueAsString(user);
@@ -70,7 +70,7 @@ public class UserWebService {
 				}
 			}
 			if (login) {
-				user = new User(username, password);
+				user = UserService.selectUserByUsername(username);
 				Cookie uname = new Cookie("username", username);
 				response.addCookie(uname);
 			} 
