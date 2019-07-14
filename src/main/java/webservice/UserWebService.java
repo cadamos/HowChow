@@ -1,5 +1,7 @@
 package webservice;
 
+import static org.hamcrest.CoreMatchers.containsString;
+
 import java.io.IOException;
 import java.util.List;
 
@@ -33,6 +35,7 @@ public class UserWebService {
 		String password = request.getParameter("password");
 		boolean canRegister = true;
 		List<User> users = UserService.selectAllUsers();
+		User user = null;
 
 		try {
 			for (User u : users) {
@@ -41,11 +44,12 @@ public class UserWebService {
 				}
 			}
 			if (canRegister) {
-				UserService.insertUser(new User(username, password));
-				response.getWriter().append("User has been added to the database");
-			} else {
-				response.getWriter().append("User already exists in the database");
+				user = new User(username, password);
+				UserService.insertUser(user);
 			}
+			ObjectMapper om = new ObjectMapper();
+			String json = om.writeValueAsString(user);
+			response.getWriter().append(json).close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
@@ -57,6 +61,7 @@ public class UserWebService {
 		String password = request.getParameter("password");
 		boolean login = false;
 		List<User> users = UserService.selectAllUsers();
+		User user = null;
 
 		try {
 			for (User u : users) {
@@ -65,12 +70,13 @@ public class UserWebService {
 				}
 			}
 			if (login) {
+				user = new User(username, password);
 				Cookie uname = new Cookie("username", username);
 				response.addCookie(uname);
-				response.getWriter().append("true");
-			} else {
-				response.getWriter().append("false");
-			}
+			} 
+			ObjectMapper om = new ObjectMapper();
+			String json = om.writeValueAsString(user);
+			response.getWriter().append(json).close();
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
