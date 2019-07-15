@@ -71,6 +71,10 @@ public static void Process(HttpServletRequest request, HttpServletResponse respo
 				TagWebService.getTagById(request, response);
 				break;
 			}
+			case "/HowChow/getAllTags.do": {
+				TagWebService.getAllTags(request, response);
+				break;
+			}
 			case "/HowChow/getTagByName.do": {
 				TagWebService.getTagByName(request, response);
 				break;
