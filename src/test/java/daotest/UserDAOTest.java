@@ -2,7 +2,7 @@ package daotest;
 
 import java.util.List;
 
-import org.junit.Assert;
+import org.testng.Assert;
 import org.testng.annotations.AfterSuite;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
