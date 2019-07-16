@@ -1,5 +1,8 @@
 package webservice;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -26,6 +29,21 @@ public class TagWebService {
 				response.getWriter().append(json).close();
 			}
 
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+	
+	public static void getAllTags(HttpServletRequest request, HttpServletResponse response) {
+		List<Tag> tags = TagService.selectAllTags();
+		ObjectMapper om = new ObjectMapper();		
+	
+		try {
+			for (Tag t : tags) {
+				String json = om.writeValueAsString(t);
+				response.getWriter().append(json); // will append 'null' if no tags in database
+			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
