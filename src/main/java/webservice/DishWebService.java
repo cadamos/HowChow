@@ -2,6 +2,7 @@ package webservice;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Base64;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
@@ -67,7 +68,11 @@ public class DishWebService {
 		ArrayList<Tag> tags = new ArrayList<Tag>();
 		
 		try {
-			tags = om.readValue(request.getParameter("tagsAssoc"),om.getTypeFactory().constructCollectionType(ArrayList.class, Tag.class));
+			
+			byte [] listvalue = Base64.getDecoder().decode(request.getParameter("tagsAssoc"));
+			String tagjson = new String(listvalue);
+			tags = om.readValue(tagjson,om.getTypeFactory().constructCollectionType(ArrayList.class, Tag.class));
+			
 		} catch (JsonParseException e) {
 			e.printStackTrace();
 		} catch (JsonMappingException e) {
@@ -75,17 +80,7 @@ public class DishWebService {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		ArrayList<Review> reviews = new ArrayList<Review>();
-		try {
-			reviews = om.readValue(request.getParameter("reviewsAssoc"),om.getTypeFactory().constructCollectionType(ArrayList.class, Review.class));
-		} catch (JsonParseException e) {
-			e.printStackTrace();
-		} catch (JsonMappingException e) {
-			e.printStackTrace();
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
+	
 		
 		String restaurant = request.getParameter("restaurant");
 		Dish d = new Dish(img,name,description,tags,restaurant);
@@ -126,15 +121,17 @@ public class DishWebService {
 		ArrayList<Tag> tags = new ArrayList<Tag>();
 		
 		try {
-			tags = om.readValue(request.getParameter("tags"),om.getTypeFactory().constructCollectionType(ArrayList.class, Tag.class));
+			
+			byte [] listvalue = Base64.getDecoder().decode(request.getParameter("tagsAssoc"));
+			String tagjson = new String(listvalue);
+			tags = om.readValue(tagjson,om.getTypeFactory().constructCollectionType(ArrayList.class, Tag.class));
+			System.out.println(tags);
+			
 		} catch (JsonParseException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (JsonMappingException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 		

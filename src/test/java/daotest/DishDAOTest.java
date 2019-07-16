@@ -73,11 +73,10 @@ public class DishDAOTest {
 	public void updateDish() {
 		ArrayList<Tag> tags = TagService.selectAllTags();
 		String img = "https://fakeimage.com";
-		String description = "Test description.";
-		String name = "Test";
-		String restaurant = "Testaurant";
-		Dish d = new Dish(id,img,name,description,null,restaurant);
-		d.setTagsAssoc(tags);
+		String description = "Test description. F!";
+		String name = "Test2";
+		String restaurant = "Testaurant5";
+		Dish d = new Dish(id,img,name,description,tags,restaurant);
 		DishService.updateDish(d);
 		Assert.assertEquals(d, DishService.selectDishById(id));
 	}

@@ -55,7 +55,6 @@ public class DishDAOImpl implements DishDAO {
 		
 		try {
 			List<Dish> allDishes = session.createQuery("FROM Dish").list();
-			System.out.println(allDishes);
 			for (Dish d: allDishes) {
 				if(d.getTagsAssoc().containsAll(tags)) {
 					dishes.add(d);
