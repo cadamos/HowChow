@@ -38,5 +38,8 @@ public class Test {
 //		DishService.insertDish(tacos);
 //		DishService.insertDish(ramen);
 
+		for(Review r : ReviewService.getReviewsByDishId(8050)) {
+			System.out.println(r.getUserRating());
+		}
 	}
 }
