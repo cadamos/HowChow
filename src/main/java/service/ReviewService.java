@@ -1,6 +1,7 @@
 package service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 import dao.ReviewDAOImpl;
@@ -28,7 +29,7 @@ public class ReviewService {
 			}
 			
 		}
-		
+		Collections.sort(revs);
 		return revs;
 	}
 	
