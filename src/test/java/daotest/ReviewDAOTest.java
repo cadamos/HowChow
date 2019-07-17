@@ -26,7 +26,7 @@ public class ReviewDAOTest {
 	@Test(priority=1)
 	public void addReview(){
 		User u = UserService.selectUserByUsername("user");
-		Dish d = DishService.selectDishById(1200);
+		Dish d = DishService.selectDishById(8050);
 		Assert.assertTrue(ReviewService.addReview(new Review(u, d,3, "This pizza is greattt dude")));
 	}
 	@Test(priority=2)
@@ -62,7 +62,7 @@ public class ReviewDAOTest {
 	}
 	@Test(priority=5)
 	public void getAllReviewByDishId() {
-		Assert.assertNotNull(ReviewService.getReviewsByDishId(1200));
+		Assert.assertNotNull(ReviewService.getReviewsByDishId(8050));
 	}
 	
 	@AfterSuite

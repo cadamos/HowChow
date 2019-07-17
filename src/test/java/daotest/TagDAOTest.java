@@ -1,5 +1,8 @@
 package daotest;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
@@ -23,7 +26,8 @@ public class TagDAOTest {
 	
 	@Test(priority = 3)
 	public void selectAllTagDAO() {
-		Assert.assertEquals(2, TagService.selectAllTags().size());
+		List<Tag> tags = TagService.selectAllTags();
+		Assert.assertTrue(tags.size() > 1);
 	}
 	
 	@Test(priority = 2)

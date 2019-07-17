@@ -13,8 +13,6 @@ public class MasterServlet extends HttpServlet {
        
     public MasterServlet() {
         super();
-    	System.out.println("test2");
-
     }
 
 	protected void process(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

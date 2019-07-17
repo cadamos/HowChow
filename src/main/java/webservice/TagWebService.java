@@ -1,9 +1,13 @@
 package webservice;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 
 import model.Tag;
 import service.TagService;
@@ -26,6 +30,22 @@ public class TagWebService {
 				response.getWriter().append(json).close();
 			}
 
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+
+	}
+	
+	public static void getAllTags(HttpServletRequest request, HttpServletResponse response) {
+		List<String> tags = new ArrayList<String>();
+		ObjectMapper om = new ObjectMapper();
+	
+		try {
+			for (Tag t : TagService.selectAllTags()) {
+				String json = om.writeValueAsString(t);
+				tags.add(json);
+			}
+			response.getWriter().append(tags.toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
