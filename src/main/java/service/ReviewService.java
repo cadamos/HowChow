@@ -21,10 +21,9 @@ public class ReviewService {
 	
 	public static List<Review> getReviewsByDishId(int d_id){
 		List<Review> revs = new ArrayList<Review>();
-		
 		for(Review r : getAllReviews()) {
 			if(r.getDish().getD_id()==d_id) {
-				revs.add(r);	
+				revs.add(r);
 			}
 			
 		}
