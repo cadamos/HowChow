@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.ObjectWriter;
 
 import model.Tag;
 import service.TagService;
@@ -36,14 +37,15 @@ public class TagWebService {
 	}
 	
 	public static void getAllTags(HttpServletRequest request, HttpServletResponse response) {
-		List<Tag> tags = TagService.selectAllTags();
-		ObjectMapper om = new ObjectMapper();		
+		List<String> tags = new ArrayList<String>();
+		ObjectMapper om = new ObjectMapper();
 	
 		try {
-			for (Tag t : tags) {
+			for (Tag t : TagService.selectAllTags()) {
 				String json = om.writeValueAsString(t);
-				response.getWriter().append(json); // will append 'null' if no tags in database
+				tags.add(json);
 			}
+			response.getWriter().append(tags.toString());
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
