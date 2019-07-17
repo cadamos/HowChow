@@ -31,23 +31,7 @@ public class ReviewWebService {
 		return true;
 	}
 	public static boolean addReview(HttpServletRequest request, HttpServletResponse response) {
-		String username = null;
-
-		Cookie cookies[] = request.getCookies();
-		for (int i = 0; i < cookies.length; i++) {
-			if (cookies[i].getName().equals("username")) {
-				username = cookies[i].getValue();
-			}
-		}
-		if (username == null) {
-			try {
-				response.getWriter().append("No User").close();
-			} catch (IOException e) {
-				e.printStackTrace();
-			}
-			return false;
-		}
-		User u = UserService.selectUserByUsername(username);
+		User u = UserService.selectUserByUsername(request.getParameter("username"));
 		Dish d = DishService.selectDishById(Integer.parseInt(request.getParameter("d_id")));
 		
 		String comment = request.getParameter("comment");

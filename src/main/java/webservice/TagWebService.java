@@ -46,10 +46,6 @@ public class TagWebService {
 				tags.add(json);
 			}
 			response.getWriter().append(tags.toString());
-//			for (Tag t : tags) {
-//				String json = om.writeValueAsString(t);
-//				response.getWriter().append(json); // will append 'null' if no tags in database
-//			}
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

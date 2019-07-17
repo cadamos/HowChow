@@ -67,6 +67,10 @@ public static void Process(HttpServletRequest request, HttpServletResponse respo
 				ReviewWebService.deleteReview(request, response);
 				break;
 			}
+			case "/HowChow/getReviewByDishId.do": {
+				ReviewWebService.getReviewsByDishId(request, response);
+				break;
+			}
 			case "/HowChow/getTagById.do": {
 				TagWebService.getTagById(request, response);
 				break;
