@@ -43,9 +43,7 @@ public class ReviewWebService {
 		boolean rated = false;
 		for(Review revs : ReviewService.getReviewsByDishId(d.getD_id())) {
 			ranks+=revs.getRating();
-			System.out.println(ranks);
 			counter++;
-			System.out.println(counter);
 			rated = true;
 		}
 		if(rated) {
