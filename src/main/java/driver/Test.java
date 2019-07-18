@@ -1,12 +1,9 @@
 package driver;
 
-import java.util.ArrayList;
 import java.util.List;
 
-import model.Dish;
-import model.Tag;
-import service.DishService;
-import service.TagService;
+import model.Review;
+import service.ReviewService;
 
 public class Test {
 	public static void main(String[] args) {
@@ -40,7 +37,6 @@ public class Test {
 //		DishService.insertDish(alfredo);
 //		DishService.insertDish(tacos);
 //		DishService.insertDish(ramen);
-		
 
 	}
 }
