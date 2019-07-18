@@ -30,14 +30,28 @@ public class ReviewWebService {
 		
 		return true;
 	}
-	public static boolean addReview(HttpServletRequest request, HttpServletResponse response) {
+	public static void addReview(HttpServletRequest request, HttpServletResponse response) {
 		User u = UserService.selectUserByUsername(request.getParameter("username"));
 		Dish d = DishService.selectDishById(Integer.parseInt(request.getParameter("d_id")));
 		
 		String comment = request.getParameter("comment");
 		int rating = Integer.parseInt(request.getParameter("rating"));
 
-		return ReviewService.addReview(new Review(u,d, rating, comment));
+		ReviewService.addReview(new Review(u,d, rating, comment));
+		float counter =0;
+		float ranks=0;
+		boolean rated = false;
+		for(Review revs : ReviewService.getReviewsByDishId(d.getD_id())) {
+			ranks+=revs.getRating();
+			System.out.println(ranks);
+			counter++;
+			System.out.println(counter);
+			rated = true;
+		}
+		if(rated) {
+		d.setRatingAvg(ranks/counter);
+		DishService.updateDish(d);
+		}
 	}
 
 	public static boolean upReview(HttpServletRequest request, HttpServletResponse response) {
