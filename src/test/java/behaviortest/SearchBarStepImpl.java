@@ -30,7 +30,7 @@ public class SearchBarStepImpl {
 
 	@Given("^The search bar's values are loaded$")
 	public void the_search_bar_s_values_are_loaded() {
-	    driver.manage().timeouts().implicitlyWait(60000, TimeUnit.SECONDS);
+	    driver.manage().timeouts().implicitlyWait(10000, TimeUnit.SECONDS);
 	}
 
 	@When("^I select the \"([^\"]*)\" tag$")
