@@ -1,6 +1,7 @@
 package service;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 import dao.DishDAOImpl;
 import model.Dish;
@@ -16,11 +17,13 @@ public class DishService {
 	
 	public static ArrayList<Dish> selectAllDishes() {
 		ArrayList<Dish> allDishes = (ArrayList<Dish>) dd.selectAllDishes();
+		Collections.sort(allDishes);
 		return allDishes;
 	}
 	
 	public static ArrayList<Dish> selectDishesByTags(ArrayList<Tag> tags) {
 		ArrayList<Dish> dishes = (ArrayList<Dish>) dd.selectDishesByTags(tags);
+		Collections.sort(dishes);
 		return dishes;
 	}
 	

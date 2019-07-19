@@ -155,11 +155,11 @@ public class Review implements Comparable<Review> {
 	@Override
 	public int compareTo(Review r) {
 		if (this.getUserRating() > r.getUserRating())
-			return 1;
+			return -1;
 		else if (this.getUserRating() == r.getUserRating())
 			return 0;
 		else
-			return -1;
+			return 1;
 	}
 
 }
