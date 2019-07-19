@@ -1,6 +1,5 @@
 package daotest;
 
-
 import java.util.List;
 
 import org.testng.Assert;
