@@ -17,7 +17,7 @@ import javax.persistence.Table;
 
 @Entity
 @Table(name="DISHES")
-public class Dish {
+public class Dish implements Comparable<Dish> {
 	
 	@Id
 	@Column(name="d_id")
@@ -184,7 +184,15 @@ public class Dish {
 		return "Dish [d_id=" + d_id + ", img=" + img + ", name=" + name + ", description=" + description
 				+ ", ratingAvg=" + ratingAvg + ", restaurant=" + restaurant + "]";
 	}
-	
-	
+
+	@Override
+	public int compareTo(Dish d) {
+		if (this.ratingAvg > d.getRatingAvg())
+			return -1;
+		else if (this.ratingAvg == d.getRatingAvg())
+			return 0;
+		else
+			return 1;
+	}
 	
 }
