@@ -13,14 +13,14 @@ import service.TagService;
 public class Test {
 	public static void main(String[] args) {
 		
-//		Tag beef = TagService.selectTagByName("Beef");
-//		Tag vegan = TagService.selectTagByName("Vegan");
-//		Tag dessert = TagService.selectTagByName("Dessert");
-//		Tag chocolate = TagService.selectTagByName("Chocolate");
-//		Tag pizza = TagService.selectTagByName("Pizza");
-//		Tag burger = TagService.selectTagByName("Burger");
-//		Tag hotdog = TagService.selectTagByName("Hotdog");
-//		Tag fruit = TagService.selectTagByName("Fruit");
+//		Tag beef = new Tag("Beef");
+//		Tag vegan = new Tag("Vegan");
+//		Tag dessert = new Tag("Dessert");
+//		Tag chocolate = new Tag("Chocolate");
+//		Tag pizza = new Tag("Pizza");
+//		Tag burger = new Tag("Burger");
+//		Tag hotdog = new Tag("Hotdog");
+//		Tag fruit = new Tag("Fruit");
 //		
 //		TagService.insertTag(beef);
 //		TagService.insertTag(vegan);
@@ -69,8 +69,5 @@ public class Test {
 //		DishService.insertDish(avocadoToast);
 //		DishService.insertDish(ramenBurger);
 
-		for(Review r : ReviewService.getReviewsByDishId(8050)) {
-			System.out.println(r.getUserRating());
-		}
 	}
 }

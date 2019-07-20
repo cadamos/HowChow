@@ -16,7 +16,7 @@ import javax.persistence.CascadeType;
 
 @Entity
 @Table(name="Tags")
-public class Tag {
+public class Tag implements Comparable<Tag> {
 	@Id
 	@SequenceGenerator(sequenceName="tag_seq", name="t_seq")
 	@GeneratedValue(generator="t_seq",strategy=GenerationType.SEQUENCE)
@@ -90,6 +90,15 @@ public class Tag {
 	}
 	
 	
-	
+	@Override
+	public int compareTo(Tag t) {
+		int compare = this.getT_name().compareTo(t.getT_name());
+		if (compare < 0)
+			return -1;
+		else if (compare > 0)
+			return 0;
+		else
+			return 1;
+	}
 
 }
