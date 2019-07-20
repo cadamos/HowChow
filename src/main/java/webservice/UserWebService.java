@@ -69,8 +69,6 @@ public class UserWebService {
 			}
 			if (login) {
 				user = UserService.selectUserByUsername(username);
-				Cookie uname = new Cookie("username", username);
-				response.addCookie(uname);
 			} 
 			ObjectMapper om = new ObjectMapper();
 			String json = om.writeValueAsString(user);
