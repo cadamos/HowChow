@@ -40,8 +40,14 @@ public class DishWebService {
 		String name = request.getParameter("name");
 		String description = request.getParameter("description");
 		ArrayList<Tag> tags = new ArrayList<Tag>();
+		
 		try {
-			tags = om.readValue(request.getParameter("tags"),om.getTypeFactory().constructCollectionType(ArrayList.class, Tag.class));
+			
+			byte [] listvalue = Base64.getDecoder().decode(request.getParameter("tags"));
+			String tagjson = new String(listvalue);
+			tags = om.readValue(tagjson,om.getTypeFactory().constructCollectionType(ArrayList.class, Tag.class));
+			System.out.println(tags);
+			
 		} catch (JsonParseException e) {
 			e.printStackTrace();
 		} catch (JsonMappingException e) {
@@ -49,6 +55,7 @@ public class DishWebService {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
 		String restaurant = request.getParameter("restaurant");
 		Dish d = new Dish(img,name,description,tags,restaurant);
 		DishService.insertDish(d);

@@ -116,7 +116,7 @@ public class Dish implements Comparable<Dish> {
 		return ratingAvg;
 	}
 
-	public void setRatingAvg(int ratingAvg) {
+	public void setRatingAvg(float ratingAvg) {
 		this.ratingAvg = ratingAvg;
 	}
 

@@ -69,5 +69,8 @@ public class Test {
 //		DishService.insertDish(avocadoToast);
 //		DishService.insertDish(ramenBurger);
 
+		for(Review r : ReviewService.getReviewsByDishId(8050)) {
+			System.out.println(r.getUserRating());
+		}
 	}
 }
