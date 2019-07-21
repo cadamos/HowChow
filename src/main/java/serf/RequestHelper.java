@@ -95,6 +95,10 @@ public static void Process(HttpServletRequest request, HttpServletResponse respo
 				TagWebService.insertTag(request, response);
 				break;
 			}
+			case "/HowChow/updateDishTags.do": {
+				DishWebService.updateDishTags(request, response);
+				break;
+			}
 		}
 	}
 }

@@ -3,7 +3,6 @@ package webservice;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Base64;
-import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -13,7 +12,6 @@ import com.fasterxml.jackson.databind.JsonMappingException;
 import com.fasterxml.jackson.databind.ObjectMapper;
 
 import model.Dish;
-import model.Review;
 import model.Tag;
 import service.DishService;
 
@@ -40,8 +38,14 @@ public class DishWebService {
 		String name = request.getParameter("name");
 		String description = request.getParameter("description");
 		ArrayList<Tag> tags = new ArrayList<Tag>();
+		
 		try {
-			tags = om.readValue(request.getParameter("tags"),om.getTypeFactory().constructCollectionType(ArrayList.class, Tag.class));
+			
+			byte [] listvalue = Base64.getDecoder().decode(request.getParameter("tags"));
+			String tagjson = new String(listvalue);
+			tags = om.readValue(tagjson,om.getTypeFactory().constructCollectionType(ArrayList.class, Tag.class));
+			System.out.println(tags);
+			
 		} catch (JsonParseException e) {
 			e.printStackTrace();
 		} catch (JsonMappingException e) {
@@ -49,6 +53,7 @@ public class DishWebService {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
 		String restaurant = request.getParameter("restaurant");
 		Dish d = new Dish(img,name,description,tags,restaurant);
 		DishService.insertDish(d);
@@ -59,7 +64,26 @@ public class DishWebService {
 			ioe.printStackTrace();
 		}		
 	}
-	
+	public static void updateDishTags(HttpServletRequest request, HttpServletResponse response) {
+		ArrayList<Tag> tags = new ArrayList<Tag>();
+		ObjectMapper om = new ObjectMapper();
+		Dish d= DishService.selectDishById(Integer.parseInt(request.getParameter("d_id")));
+		try {
+			byte [] listvalue = Base64.getDecoder().decode(request.getParameter("tags"));
+			String tagjson = new String(listvalue);
+			tags = om.readValue(tagjson,om.getTypeFactory().constructCollectionType(ArrayList.class, Tag.class));
+			
+		} catch (JsonParseException e) {
+			e.printStackTrace();
+		} catch (JsonMappingException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		d.setTagsAssoc(tags);
+		DishService.updateDish(d);
+
+	}
 	public static void updateDish (HttpServletRequest request, HttpServletResponse response) {
 		ObjectMapper om = new ObjectMapper();
 		String img = request.getParameter("img");

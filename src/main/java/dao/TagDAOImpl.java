@@ -43,8 +43,6 @@ public class TagDAOImpl implements TagDAO {
 		} finally {
 			session.close();
 		}
-
-
 		return tags;
 	}
 
