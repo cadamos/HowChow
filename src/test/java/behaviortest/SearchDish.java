@@ -38,11 +38,15 @@ public class SearchDish {
 	public void select_a_dish_tag() throws Throwable {
 	    WebElement dropdown= driver.findElement(By.xpath("/html/body/app-root/app-navbar/nav/form/div/sui-multi-select/div[2]/sui-select-option[1]"));
 	    dropdown.click();
+	    
+	    WebElement searchbtn= driver.findElementByClassName("btn"); 
+	    searchbtn.click();
 	}
 
 	@Then("^I should be able to see a list of dishes$")
 	public void i_should_be_able_to_see_a_list_of_dishes() throws Throwable {
-	   WebElement clickImage = driver.findElement(By.xpath("/html/body/app-root/app-dish-list/div/div/app-dish-list-item[1]/div/img"));
+		Thread.sleep(3000);
+	   WebElement clickImage = driver.findElement(By.xpath("/html/body/app-root/app-dish-list/div/div/app-dish-list-item[1]"));
 	   clickImage.click();
 	   
 	   Thread.sleep(3000);
