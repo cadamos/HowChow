@@ -16,7 +16,7 @@ import cucumber.api.java.en.When;
 public class DishDisplayStepImpl {
 
 	static {
-		File file = new File("src/test/resources/chromedriver");
+		File file = new File("src/test/resources/chromedriver.exe");
 		System.setProperty("webdriver.chrome.driver", file.getAbsolutePath());
 	}
 	
@@ -25,12 +25,12 @@ public class DishDisplayStepImpl {
 	
 	@Given("^I am on HowChow's Dish List page$")
 	public void i_am_on_HowChow_s_Dish_List_page() {
-	    driver.get("http://ec2-3-15-163-20.us-east-2.compute.amazonaws.com:8080/angular/how-chow-app");
+	    driver.get("http://ec2-3-15-163-20.us-east-2.compute.amazonaws.com:8080/how-chow-app");
 	}
 
 	@When("^I click on a card's image$")
 	public void i_click_on_a_card_s_image() {
-	    WebElement card = new WebDriverWait(driver,20).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("/html/body/app-root/app-dish-list/div/div/app-dish-list-item[1]/div/img")));
+	    WebElement card = new WebDriverWait(driver,20).until(ExpectedConditions.visibilityOfElementLocated(By.xpath("//*[@id=\"image\"]")));
 	    card.click();
 	}
 
@@ -39,6 +39,6 @@ public class DishDisplayStepImpl {
 	    WebElement title = driver.findElement(By.xpath("/html/body/app-root/app-dish-display/div/div/div[2]/div/h5"));
 	    String titlestring = title.getAttribute("innerHTML");
 	    System.out.println(titlestring);
-	    Assert.assertTrue(titlestring.equals("Tacos"));
+	    Assert.assertTrue(titlestring.equals("Ramen Burger "));
 	}
 }
